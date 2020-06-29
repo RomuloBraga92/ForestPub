@@ -51,7 +51,7 @@ export default function DashboardClient(){
   },[])
 
   const handleCameraClick = useCallback(()=>{
-    setCameraClicked(true);
+    navigation.navigate('ScanCode');
   },[])
 
   return(
