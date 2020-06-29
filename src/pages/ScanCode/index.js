@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Text, View, StyleSheet, Button } from 'react-native';
+import { Text, View, StyleSheet, Button, Alert } from 'react-native';
 import { BarCodeScanner } from 'expo-barcode-scanner';
 
 export default function ScanCode() {
@@ -15,7 +15,7 @@ export default function ScanCode() {
 
   const handleBarCodeScanned = ({ type, data }) => {
     setScanned(true);
-    alert(`Código de barras do tipo ${type} e dados ${data} foi escaneado!`);
+    Alert.alert('Produto escaneado com sucesso',`Código de barras do tipo ${type} e dados ${data} foi escaneado!`);
   };
 
   if (hasPermission === null) {

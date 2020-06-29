@@ -66,7 +66,6 @@ export const CheckInButtonText = styled.Text`
   font-size: 18px;
   font-family: 'Roboto_400Regular';
   color: #fff;
-
 `;
 
 
