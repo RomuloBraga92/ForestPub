@@ -1,26 +1,28 @@
 import styled from 'styled-components/native';
-import {getStatusBarHeight} from 'react-native-iphone-x-helper'
+import {getStatusBarHeight} from 'react-native-iphone-x-helper';
+import {RectButton} from 'react-native-gesture-handler';
 
 export const Container = styled.View`
   flex: 1;
-  padding: 0 10px;
 `;
 
 export const ClientHeader = styled.View`
   padding-top: ${20 + getStatusBarHeight()}px;
-  align-items: center;
+  align-items: flex-start;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 5px 20px;
 `;
 
-export const ClientHeaderText = styled.Text`
-  font-size: 18px;
-  line-height: 20px;
-  margin-top: 8px;
-  font-family: 'Roboto_400Regular';
-`;
+export const MenuButton = styled.TouchableOpacity``;
 
-export const UserName = styled.Text`
-  font-size: 18px;
-  font-family: 'Roboto_400Regular';
+export const AvatarButton = styled.TouchableOpacity``;
+
+export const AvatarImage = styled.View`
+  width: 40px;
+  height: 40px;
+  border-radius: 20px;
+  background: #ccc;
 `;
 
 export const MapContainer = styled.View`
@@ -29,33 +31,31 @@ export const MapContainer = styled.View`
   border-radius: 10px;
   overflow: hidden;
   margin-top: 16px;
+  position: relative;
 `;
 
-export const MenuContainer = styled.View`
-  flex-direction: row;
-  margin-top: 16px;
-  margin-bottom: 32px;
-  align-items: center;
-  justify-content: space-between;
-`;
-
-export const MenuItem = styled.TouchableOpacity`
-  background-color: #fff;
-  border-width: 2px;
-  border-color: #eee;
-  height: 120;
-  width: 30%;
-  border-radius: 8px;
-  padding-top: 20px;
-  padding-bottom: 16px;
+export const AwardButton = styled(RectButton)`
+  width: 50px;
+  height: 50px;
+  background: #0000FF;
+  border-radius: 25px;
   align-items: center;
   justify-content: center;
+  position: absolute;
+  bottom: 150px;
+  right: 50px;
 `;
 
-export const MenuItemName = styled.Text`
-  font-size: 14px;
-  font-family: 'Roboto_400Regular';
-  margin-top: 8px;
+export const ScanCodeButton = styled(RectButton)`
+  width: 50px;
+  height: 50px;
+  background: #0000FF;
+  border-radius: 25px;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  bottom: 90px;
+  right: 50px;
 `;
 
 

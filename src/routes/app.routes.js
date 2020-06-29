@@ -4,8 +4,10 @@ import { NavigationContainer } from '@react-navigation/native';
 
 import DashboardClient from '../pages/DashboardClient';
 import ProfileClient from '../pages/ProfileClient';
+import MarkerDetail from '../pages/MarkerDetail';
 
 const App = createStackNavigator();
+
 
 const AppRoutes = () => {
   return(
@@ -17,6 +19,7 @@ const AppRoutes = () => {
       >
         <App.Screen name="DashboardClient" component={DashboardClient} />
         <App.Screen name="ProfileClient" component={ProfileClient} />
+        <App.Screen name="MarkerDetail" component={MarkerDetail} />
       </App.Navigator>
     </NavigationContainer>
   )

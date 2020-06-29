@@ -1,37 +1,108 @@
-import React from 'react';
-import { StyleSheet } from 'react-native';
-import MapView from 'react-native-maps';
-import {Feather as Icon} from '@expo/vector-icons';
+import React, { useState, useEffect, useCallback } from 'react';
+import { StyleSheet, Alert } from 'react-native';
+import MapView, { Marker } from 'react-native-maps';
+import {FontAwesome5 as Icon} from '@expo/vector-icons';
+import {useNavigation} from '@react-navigation/native';
+import * as Location from 'expo-location';
 
-import {Container, ClientHeader, ClientHeaderText, UserName, MapContainer, MenuContainer, MenuItem, MenuItemName} from './styles';
+import {Container,
+  ClientHeader,
+  MapContainer,
+  AwardButton,
+  AvatarButton,
+  AvatarImage,
+  MenuButton,
+  ScanCodeButton,
+} from './styles';
 
 
 export default function DashboardClient(){
+  const [initialPosition, setInitialPosition] = useState([0,0]);
+
+  const navigation = useNavigation();
+
+  const handleNavigationMarkerDetail = useCallback(()=>{
+    navigation.navigate('MarkerDetail');
+  },[])
+
+  const handleProfileNavigation = useCallback(()=>{
+    navigation.navigate('ProfileClient');
+  },[])
+
+  useEffect(()=>{
+    async function loadPosition(){
+      const {status} = await Location.requestPermissionsAsync();
+
+      if(status !== 'granted'){
+        Alert.alert('Eita!', 'Precisamos de permissão para obter sua localização!');
+        return;
+      }
+
+      const location = await Location.getCurrentPositionAsync();
+
+      const {latitude, longitude} = location.coords;
+
+      setInitialPosition([
+        latitude,
+        longitude,
+      ])
+    }
+    loadPosition();
+  },[])
+
+  const handleCameraClick = useCallback(()=>{
+    setCameraClicked(true);
+  },[])
+
   return(
     <Container>
       <ClientHeader>
-        <ClientHeaderText>Bem-vindo,</ClientHeaderText>
-        <UserName>Romulo</UserName>
+        <MenuButton onPress={()=>{}}>
+        <Icon name="bars" size={30} color='black'/>
+        </MenuButton>
+
+        <AvatarButton onPress={handleProfileNavigation}>
+          <AvatarImage/>
+        </AvatarButton>
       </ClientHeader>
 
       <MapContainer>
-          <MapView style={styles.map}/>
+          {initialPosition[0] !== 0 && (
+            <MapView style={styles.map}
+          initialRegion={{
+            latitude: initialPosition[0],
+            longitude: initialPosition[1],
+            latitudeDelta: 0.014,
+            longitudeDelta: 0.014,
+          }}
+          >
+          <Marker
+          coordinate={{
+            latitude: -23.0250808,
+            longitude: -43.4905615,
+          }}
+          onPress={handleNavigationMarkerDetail}
+          title="Bar do zé"
+          description="Endereco"
+          />
+          <Marker
+          coordinate={{
+            latitude: -23.050389,
+            longitude: -43.4905615,
+          }}
+          onPress={handleNavigationMarkerDetail}
+          title="Bar do marco"
+          description="Endereco"
+          />
+          <AwardButton>
+            <Icon name='trophy' size={25} color='#fff'/>
+          </AwardButton>
+          <ScanCodeButton onPress={handleCameraClick}>
+            <Icon name='camera' size={25} color='#fff'/>
+          </ScanCodeButton>
+          </MapView>
+          )}
       </MapContainer>
-
-      <MenuContainer>
-        <MenuItem>
-          <Icon name="user" size={20} color="#aaa"/>
-          <MenuItemName>Perfil</MenuItemName>
-        </MenuItem>
-        <MenuItem>
-          <Icon name="award" size={20} color="#aaa"/>
-          <MenuItemName>Prêmios</MenuItemName>
-        </MenuItem>
-        <MenuItem>
-          <Icon name="camera" size={20} color="#aaa"/>
-          <MenuItemName>Cadastrar produto</MenuItemName>
-        </MenuItem>
-      </MenuContainer>
     </Container>
   )
 }
@@ -43,31 +114,9 @@ const styles = StyleSheet.create({
   },
 
   mapMarker: {
-    width: 90,
-    height: 80,
+    width: 120,
+    height: 100,
+    textAlign: 'center',
   },
 
-  mapMarkerContainer: {
-    width: 90,
-    height: 70,
-    backgroundColor: '#34CB79',
-    flexDirection: 'column',
-    borderRadius: 8,
-    overflow: 'hidden',
-    alignItems: 'center'
-  },
-
-  mapMarkerImage: {
-    width: 90,
-    height: 45,
-    resizeMode: 'cover',
-  },
-
-  mapMarkerTitle: {
-    flex: 1,
-    fontFamily: 'Roboto_400Regular',
-    color: '#FFF',
-    fontSize: 13,
-    lineHeight: 23,
-  },
 })
