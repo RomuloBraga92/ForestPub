@@ -6,6 +6,11 @@ import DashboardClient from '../pages/DashboardClient';
 import ProfileClient from '../pages/ProfileClient';
 import MarkerDetail from '../pages/MarkerDetail';
 import ScanCode from '../pages/ScanCode';
+import ChooseBarClientSignUp from '../pages/ChooseBarClientSignUp';
+import OnBoarding from '../pages/OnBoarding';
+import SignIn from '../pages/SignIn';
+import SignUpClient from '../pages/SignUpClient';
+import SignUpBar from '../pages/SignUpBar';
 
 const App = createStackNavigator();
 
@@ -18,6 +23,11 @@ const AppRoutes = () => {
           headerShown: false,
         }}
       >
+        <App.Screen name="OnBoarding" component={OnBoarding} />
+        <App.Screen name="SignIn" component={SignIn} />
+        <App.Screen name="SignUpClient" component={SignUpClient} />
+        <App.Screen name="SignUpBar" component={SignUpBar} />
+        <App.Screen name="ChooseBarClientSignUp" component={ChooseBarClientSignUp} />
         <App.Screen name="DashboardClient" component={DashboardClient} />
         <App.Screen name="ProfileClient" component={ProfileClient} />
         <App.Screen name="MarkerDetail" component={MarkerDetail} />

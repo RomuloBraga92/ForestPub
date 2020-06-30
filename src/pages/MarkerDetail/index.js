@@ -1,4 +1,5 @@
 import React, {useCallback, useState, useEffect} from 'react';
+import {View, Text} from 'react-native';
 import {Feather as Icon} from '@expo/vector-icons';
 import {useNavigation, useRoute} from '@react-navigation/native';
 import * as Location from 'expo-location';
@@ -13,13 +14,16 @@ BarImage,
 BarName,
 BarAddress,
 CheckInButton,
-CheckInButtonText
+CheckInButtonText,
+ScanCodeButton,
+ScanCodeButtonText
 } from './styles';
 import { Alert } from 'react-native';
 
 export default function MarkerDetail(){
   const [currentPosition, setCurrentPosition] = useState([0,0]);
   const [barPosition, setBarPosition] = useState([0,0]);
+  const [checkin, setCheckin] = useState(false);
 
   const navigation = useNavigation();
 
@@ -59,7 +63,10 @@ export default function MarkerDetail(){
     navigation.goBack();
   },[])
 
-  //console.log('currentPosition: ', currentPosition, 'barPosition: ', barPosition)
+  const handleUncheckIn = useCallback(()=>{
+    setCheckin(false);
+  },[])
+
   const handleCheckIn = useCallback(()=>{
     if(currentPosition[0] !== barPosition[0] && currentPosition[1] !== barPosition[1]){
       Alert.alert('Erro no check-in', 'Vá para o bar selecionado para realizar o check-in');
@@ -67,9 +74,14 @@ export default function MarkerDetail(){
 
     if(currentPosition[0] === barPosition[0] && currentPosition[1] === barPosition[1]){
       Alert.alert('Sucesso', 'Seus pontos foram creditados!');
+      setCheckin(true);
 
-      navigation.navigate('DashboardClient');
+      setTimeout(handleUncheckIn, 5000);
     }
+  },[])
+
+  const handleCameraClick = useCallback(()=>{
+    navigation.navigate('ScanCode');
   },[])
 
   return(
@@ -86,9 +98,12 @@ export default function MarkerDetail(){
         <BarImage/>
         <BarName>Bar do Zé</BarName>
         <BarAddress>Endereço do bar</BarAddress>
-        <CheckInButton onPress={handleCheckIn}>
+        <CheckInButton onPress={handleCheckIn} disabled={checkin}>
           <CheckInButtonText>Fazer check-in</CheckInButtonText>
         </CheckInButton>
+        <ScanCodeButton onPress={handleCameraClick} disabled={!checkin}>
+          <ScanCodeButtonText>Cadastrar Produto Ambev</ScanCodeButtonText>
+        </ScanCodeButton>
       </Content>
 
 

@@ -1,6 +1,5 @@
 import styled from 'styled-components/native';
 import {getStatusBarHeight} from 'react-native-iphone-x-helper';
-import {RectButton} from 'react-native-gesture-handler';
 
 export const Container = styled.View`
   flex: 1;
@@ -52,20 +51,40 @@ export const BarAddress = styled.Text`
   margin-top: 10px;
 `;
 
-export const CheckInButton = styled(RectButton)`
-  width: 150px;
+export const CheckInButton = styled.TouchableOpacity`
+  width: 180px;
   height: 60px;
   border-radius: 10px;
   background: #0000ff;
   margin-top: 25px;
   align-items: center;
   justify-content: center;
+  opacity: ${props => props.disabled ? 0.2 : 1}
 `;
 
 export const CheckInButtonText = styled.Text`
   font-size: 18px;
   font-family: 'Roboto_400Regular';
   color: #fff;
+`;
+
+export const ScanCodeButton = styled.TouchableOpacity`
+  width: 180px;
+  height: 60px;
+  border-radius: 10px;
+  background: #0000ff;
+  margin-top: 25px;
+  align-items: center;
+  justify-content: center;
+  opacity: ${props => props.disabled ? 0.2 : 1}
+`;
+
+export const ScanCodeButtonText = styled.Text`
+  font-size: 18px;
+  font-family: 'Roboto_400Regular';
+  color: #fff;
+  text-align: center;
+
 `;
 
 

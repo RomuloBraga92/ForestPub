@@ -12,7 +12,6 @@ import {Container,
   AvatarButton,
   AvatarImage,
   MenuButton,
-  ScanCodeButton,
 } from './styles';
 
 
@@ -50,9 +49,7 @@ export default function DashboardClient(){
     loadPosition();
   },[])
 
-  const handleCameraClick = useCallback(()=>{
-    navigation.navigate('ScanCode');
-  },[])
+
 
   return(
     <Container>
@@ -97,9 +94,6 @@ export default function DashboardClient(){
           <AwardButton>
             <Icon name='trophy' size={25} color='#fff'/>
           </AwardButton>
-          <ScanCodeButton onPress={handleCameraClick}>
-            <Icon name='camera' size={25} color='#fff'/>
-          </ScanCodeButton>
           </MapView>
           )}
       </MapContainer>
