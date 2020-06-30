@@ -33,6 +33,10 @@ export default function DashboardClient(){
     navigation.navigate('SignIn');
   },[])
 
+  const handleNavigationChooseAwards = useCallback(()=>{
+    navigation.navigate('ChooseAwards')
+  },[])
+
   useEffect(()=>{
     async function loadPosition(){
       const {status} = await Location.requestPermissionsAsync();
@@ -67,7 +71,7 @@ export default function DashboardClient(){
             <MenuTitle>Ranking</MenuTitle>
           </MenuItem>
           <MenuItem>
-            <MenuButton>
+            <MenuButton onPress={handleNavigationChooseAwards}>
               <Icon name='star' size={20} color='#fff'/>
             </MenuButton>
             <MenuTitle>Prêmios</MenuTitle>

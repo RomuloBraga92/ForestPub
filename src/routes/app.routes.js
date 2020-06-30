@@ -12,6 +12,7 @@ import OnBoarding from '../pages/OnBoarding';
 import SignIn from '../pages/SignIn';
 import SignUpClient from '../pages/SignUpClient';
 import SignUpBar from '../pages/SignUpBar';
+import ChooseAwards from '../pages/ChooseAwards';
 
 const App = createStackNavigator();
 
@@ -34,6 +35,7 @@ const AppRoutes = () => {
         <App.Screen name="ProfileClient" component={ProfileClient} />
         <App.Screen name="MarkerDetail" component={MarkerDetail} />
         <App.Screen name="ScanCode" component={ScanCode} />
+        <App.Screen name="ChooseAwards" component={ChooseAwards} />
       </App.Navigator>
     </NavigationContainer>
   )
