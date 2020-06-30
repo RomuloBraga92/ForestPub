@@ -3,13 +3,11 @@ import {getStatusBarHeight} from 'react-native-iphone-x-helper';
 
 export const Container = styled.View`
   flex: 1;
-  padding: 0 20px;
 `;
-
 export const Header = styled.View`
   padding-top: ${20 + getStatusBarHeight()}px;
   align-items: flex-start;
-  margin: 30px 0px;
+  margin: 30px 20px;
   flex-direction: row;
 
 `;
@@ -21,34 +19,54 @@ export const BackButton = styled.TouchableOpacity`
 
 export const BackButtonText = styled.Text`
   font-size: 20px;
-  color: black;
+  color: #999591;
 `;
 
 export const Content = styled.View`
   flex: 1;
   align-items: center;
-  margin-top: 100px;
 `;
 
 export const BarImage = styled.View`
   width: 100%;
-  height: 200px;
+  height: 60%;
   border-radius: 10px;
   background: #ccc;
+  position: relative;
+  margin-bottom: 30px;
+`;
+
+export const ChecksContainer = styled.View`
+  width: 60px;
+  height: 40px;
+  background: #f4f4f4;
+  border-radius: 10px;
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px 8px;
+`;
+
+export const ChecksText = styled.Text`
+  font-size: 18px;
+  font-family: 'Poppins_400Regular';
+  color: #999591;
 `;
 
 export const BarName = styled.Text`
-  font-size: 18px;
-  font-family: 'Roboto_500Medium';
-  text-align: center;
-  margin-top: 20px;
+  font-size: 30px;
+  font-family: 'Poppins_500Medium';
+  color: #999591;
+  margin-top: 15px;
 `;
 
 export const BarAddress = styled.Text`
-  font-size: 16px;
-  font-family: 'Roboto_400Regular';
-  text-align: center;
-  margin-top: 10px;
+  font-size: 20px;
+  font-family: 'Poppins_400Regular';
+  color: #999591;
 `;
 
 export const CheckInButton = styled.TouchableOpacity`
@@ -69,7 +87,7 @@ export const CheckInButtonText = styled.Text`
 `;
 
 export const ScanCodeButton = styled.TouchableOpacity`
-  width: 180px;
+  width: 70px;
   height: 60px;
   border-radius: 10px;
   background: #0000ff;
@@ -79,12 +97,12 @@ export const ScanCodeButton = styled.TouchableOpacity`
   opacity: ${props => props.disabled ? 0.2 : 1}
 `;
 
-export const ScanCodeButtonText = styled.Text`
-  font-size: 18px;
-  font-family: 'Roboto_400Regular';
-  color: #fff;
-  text-align: center;
 
+export const ButtonsContainer = styled.View`
+  flex-direction: row;
+  width: 300px;
+  align-items: center;
+  justify-content: space-between;
 `;
 
 

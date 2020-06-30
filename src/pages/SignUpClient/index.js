@@ -44,6 +44,13 @@ export default function SignIn(){
             placeholder="E-mail"
             />
             <Input
+            type="text"
+            autoCorrect={false}
+            autoCapitalize="none"
+            name="cpf"
+            placeholder="CPF - Apenas números"
+            />
+            <Input
             name="password"
             type="password"
             secureTextEntry

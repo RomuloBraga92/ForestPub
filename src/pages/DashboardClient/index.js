@@ -1,17 +1,18 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { StyleSheet, Alert } from 'react-native';
 import MapView, { Marker } from 'react-native-maps';
-import {FontAwesome5 as Icon} from '@expo/vector-icons';
+import {FontAwesome as Icon} from '@expo/vector-icons';
 import {useNavigation} from '@react-navigation/native';
 import * as Location from 'expo-location';
 
 import {Container,
   ClientHeader,
   MapContainer,
-  AwardButton,
-  AvatarButton,
-  AvatarImage,
+  Title,
+  MenuContainer,
+  MenuItem,
   MenuButton,
+  MenuTitle
 } from './styles';
 
 
@@ -24,8 +25,12 @@ export default function DashboardClient(){
     navigation.navigate('MarkerDetail');
   },[])
 
-  const handleProfileNavigation = useCallback(()=>{
+  const handleNavigationProfile = useCallback(()=>{
     navigation.navigate('ProfileClient');
+  },[])
+
+  const handleNavigationLogOut = useCallback(()=>{
+    navigation.navigate('SignIn');
   },[])
 
   useEffect(()=>{
@@ -50,17 +55,36 @@ export default function DashboardClient(){
   },[])
 
 
-
   return(
     <Container>
       <ClientHeader>
-        <MenuButton onPress={()=>{}}>
-        <Icon name="bars" size={30} color='black'/>
-        </MenuButton>
-
-        <AvatarButton onPress={handleProfileNavigation}>
-          <AvatarImage/>
-        </AvatarButton>
+        <Title>Bem Vindo, Fulano!</Title>
+        <MenuContainer>
+          <MenuItem>
+            <MenuButton>
+              <Icon name='trophy' size={20} color='#fff'/>
+            </MenuButton>
+            <MenuTitle>Ranking</MenuTitle>
+          </MenuItem>
+          <MenuItem>
+            <MenuButton>
+              <Icon name='star' size={20} color='#fff'/>
+            </MenuButton>
+            <MenuTitle>Prêmios</MenuTitle>
+          </MenuItem>
+          <MenuItem>
+            <MenuButton onPress={handleNavigationProfile}>
+              <Icon name='user' size={20} color='#fff'/>
+            </MenuButton>
+            <MenuTitle>Perfil</MenuTitle>
+          </MenuItem>
+          <MenuItem>
+            <MenuButton onPress={handleNavigationLogOut}>
+              <Icon name='sign-out' size={20} color='#fff'/>
+            </MenuButton>
+            <MenuTitle>Sair</MenuTitle>
+          </MenuItem>
+        </MenuContainer>
       </ClientHeader>
 
       <MapContainer>
@@ -91,9 +115,6 @@ export default function DashboardClient(){
           title="Bar do marco"
           description="Endereco"
           />
-          <AwardButton>
-            <Icon name='trophy' size={25} color='#fff'/>
-          </AwardButton>
           </MapView>
           )}
       </MapContainer>

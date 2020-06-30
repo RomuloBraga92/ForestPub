@@ -1,6 +1,7 @@
 import React, { useCallback, useRef } from 'react';
 import { Form } from '@unform/mobile';
 import { KeyboardAvoidingView, ScrollView } from 'react-native';
+import {useNavigation} from '@react-navigation/native'
 
 import Button from '../../components/Button';
 import Input from '../../components/input';
@@ -8,6 +9,11 @@ import {Container, Title, MiniTitle} from './styles';
 
 export default function SignIn(){
   const formRef = useRef(null);
+  const navigation = useNavigation();
+
+  const handleDashboardBar = useCallback(()=>{
+    navigation.navigate('DashboardBar');
+  },[])
 
   return(
     <KeyboardAvoidingView
@@ -21,7 +27,7 @@ export default function SignIn(){
         <Container>
           <Title>Cadastre-se Agora!</Title>
           <MiniTitle>Dados empresarias</MiniTitle>
-          <Form ref={formRef} onSubmit={()=>{}} style={{marginTop: 20}}>
+          <Form ref={formRef} onSubmit={handleDashboardBar} style={{marginTop: 20}}>
             <Input
             type="text"
             autoCorrect={false}

@@ -1,6 +1,5 @@
 import React, {useCallback, useState, useEffect} from 'react';
-import {View, Text} from 'react-native';
-import {Feather as Icon} from '@expo/vector-icons';
+import {FontAwesome as Icon} from '@expo/vector-icons';
 import {useNavigation, useRoute} from '@react-navigation/native';
 import * as Location from 'expo-location';
 
@@ -13,10 +12,12 @@ Content,
 BarImage,
 BarName,
 BarAddress,
+ChecksContainer,
+ChecksText,
 CheckInButton,
 CheckInButtonText,
 ScanCodeButton,
-ScanCodeButtonText
+ButtonsContainer,
 } from './styles';
 import { Alert } from 'react-native';
 
@@ -95,15 +96,22 @@ export default function MarkerDetail(){
       </Header>
 
       <Content>
-        <BarImage/>
+        <BarImage>
+          <ChecksContainer>
+            <Icon name='user' size={20} color='#999591'/>
+            <ChecksText>50</ChecksText>
+          </ChecksContainer>
+        </BarImage>
         <BarName>Bar do Zé</BarName>
         <BarAddress>Endereço do bar</BarAddress>
-        <CheckInButton onPress={handleCheckIn} disabled={checkin}>
-          <CheckInButtonText>Fazer check-in</CheckInButtonText>
-        </CheckInButton>
-        <ScanCodeButton onPress={handleCameraClick} disabled={!checkin}>
-          <ScanCodeButtonText>Cadastrar Produto Ambev</ScanCodeButtonText>
-        </ScanCodeButton>
+        <ButtonsContainer>
+          <CheckInButton onPress={handleCheckIn} disabled={checkin}>
+            <CheckInButtonText>Fazer check-in</CheckInButtonText>
+          </CheckInButton>
+          <ScanCodeButton onPress={handleCameraClick} disabled={!checkin}>
+            <Icon name='barcode' size={20} color='#fff'/>
+          </ScanCodeButton>
+        </ButtonsContainer>
       </Content>
 
 

@@ -8,21 +8,41 @@ export const Container = styled.View`
 
 export const ClientHeader = styled.View`
   padding-top: ${20 + getStatusBarHeight()}px;
-  align-items: flex-start;
-  flex-direction: row;
-  justify-content: space-between;
   margin: 5px 20px;
 `;
 
-export const MenuButton = styled.TouchableOpacity``;
+export const Title = styled.Text`
+  font-size: 50px;
+  font-family: 'Poppins_500Medium';
+  color: #999591;
+`;
 
-export const AvatarButton = styled.TouchableOpacity``;
+export const MenuContainer = styled.View`
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 30px;
+  margin-bottom: 10px;
+`;
 
-export const AvatarImage = styled.View`
-  width: 40px;
-  height: 40px;
-  border-radius: 20px;
-  background: #ccc;
+export const MenuItem = styled.View`
+  align-items: center;
+  justify-content: center;
+`;
+export const MenuButton = styled.TouchableHighlight`
+  width: 50px;
+  height: 50px;
+  background: #999591;
+  border-radius: 25px;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const MenuTitle = styled.Text`
+  font-size: 18px;
+  font-family: 'Poppins_400Regular';
+  color:  #999591;
+  margin-top: 10px;
 `;
 
 export const MapContainer = styled.View`
@@ -30,32 +50,7 @@ export const MapContainer = styled.View`
   width: 100%;
   border-radius: 10px;
   overflow: hidden;
-  margin-top: 16px;
-  position: relative;
 `;
 
-export const AwardButton = styled(RectButton)`
-  width: 50px;
-  height: 50px;
-  background: #0000FF;
-  border-radius: 25px;
-  align-items: center;
-  justify-content: center;
-  position: absolute;
-  bottom: 150px;
-  right: 50px;
-`;
-
-export const ScanCodeButton = styled(RectButton)`
-  width: 50px;
-  height: 50px;
-  background: #0000FF;
-  border-radius: 25px;
-  align-items: center;
-  justify-content: center;
-  position: absolute;
-  bottom: 90px;
-  right: 50px;
-`;
 
 

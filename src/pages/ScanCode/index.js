@@ -19,7 +19,7 @@ export default function ScanCode() {
   };
 
   if (hasPermission === null) {
-    return <Text>Solicitando perimissão da câmera</Text>;
+    return <Text>Solicitando permissão da câmera</Text>;
   }
   if (hasPermission === false) {
     return <Text>Sem acesso a câmera</Text>;
