@@ -5,7 +5,9 @@ import {FontAwesome as Icon} from '@expo/vector-icons';
 import {useNavigation} from '@react-navigation/native';
 import * as Location from 'expo-location';
 
-import {Container,
+import tree from '../../assets/arvre-somos-nozes.png';
+import {
+  Container,
   ClientHeader,
   MapContainer,
   Title,
@@ -36,6 +38,7 @@ export default function DashboardClient(){
   const handleNavigationChooseAwards = useCallback(()=>{
     navigation.navigate('ChooseAwards')
   },[])
+
 
   useEffect(()=>{
     async function loadPosition(){
@@ -109,6 +112,7 @@ export default function DashboardClient(){
           onPress={handleNavigationMarkerDetail}
           title="Bar do zé"
           description="Endereco"
+          image={tree}
           />
           <Marker
           coordinate={{
@@ -118,6 +122,7 @@ export default function DashboardClient(){
           onPress={handleNavigationMarkerDetail}
           title="Bar do marco"
           description="Endereco"
+          image={tree}
           />
           </MapView>
           )}
@@ -133,9 +138,10 @@ const styles = StyleSheet.create({
   },
 
   mapMarker: {
-    width: 120,
-    height: 100,
+    width: 50,
+    height: 50,
     textAlign: 'center',
+    resizeMode: 'cover',
   },
 
 })

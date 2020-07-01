@@ -4,21 +4,33 @@ export const Container = styled.View`
   flex: 1;
 `;
 
+export const BackButton = styled.TouchableOpacity`
+  margin-top: 70px;
+  margin-left: 20px;
+`;
+
 export const Header = styled.View`
   width: 100%;
   align-items: center;
   justify-content: center;
-  margin-top: 100px;
+  margin-top: 10px;
 `;
 
 export const Title = styled.Text`
   font-size: 40px;
-  font-family: 'Poppins_500Medium'
+  font-family: 'Poppins_500Medium';
   color: #999591;
 `;
 
+export const MiniTitle = styled.Text`
+  font-size: 25px;
+  font-family: 'Poppins_400Regular';
+  color: #312e38;
+  margin-top: 10px;
+`;
+
 export const Content = styled.View`
-  margin-top: 30px;
+  margin-top: 20px;
 `;
 
 export const AwardRowContainer = styled.View`
@@ -41,6 +53,8 @@ export const AwardBlock = styled.TouchableOpacity`
   background: #999591;
   border-radius: 10px;
   margin: 6px 20px;
+
+  opacity: ${props => props.disabled ? 0.2 : 1}
 `;
 
 export const AwardRank = styled.Text`
