@@ -25,19 +25,23 @@ export default function DashboardClient(){
 
   const handleNavigationMarkerDetail = useCallback(()=>{
     navigation.navigate('MarkerDetail');
-  },[])
+  },[navigation])
 
   const handleNavigationProfile = useCallback(()=>{
     navigation.navigate('ProfileClient');
-  },[])
+  },[navigation])
 
   const handleNavigationLogOut = useCallback(()=>{
     navigation.navigate('SignIn');
-  },[])
+  },[navigation])
 
   const handleNavigationChooseAwards = useCallback(()=>{
     navigation.navigate('ChooseAwards')
-  },[])
+  },[navigation])
+
+  const handleNavigationRanking = useCallback(()=>{
+    navigation.navigate('Ranking');
+  },[navigation])
 
 
   useEffect(()=>{
@@ -68,7 +72,7 @@ export default function DashboardClient(){
         <Title>Bem Vindo, Fulano!</Title>
         <MenuContainer>
           <MenuItem>
-            <MenuButton>
+            <MenuButton onPress={handleNavigationRanking} style={styles.shadow}>
               <Icon name='trophy' size={20} color='#fff'/>
             </MenuButton>
             <MenuTitle>Ranking</MenuTitle>
@@ -143,5 +147,17 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     resizeMode: 'cover',
   },
+
+  shadow:{
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 8,
+      },
+    shadowOpacity: 0.46,
+    shadowRadius: 11.14,
+
+    elevation: 17,
+  }
 
 })

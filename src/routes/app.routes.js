@@ -13,6 +13,7 @@ import SignIn from '../pages/SignIn';
 import SignUpClient from '../pages/SignUpClient';
 import SignUpBar from '../pages/SignUpBar';
 import ChooseAwards from '../pages/ChooseAwards';
+import Ranking from '../pages/Ranking';
 
 const App = createStackNavigator();
 
@@ -36,6 +37,7 @@ const AppRoutes = () => {
         <App.Screen name="MarkerDetail" component={MarkerDetail} />
         <App.Screen name="ScanCode" component={ScanCode} />
         <App.Screen name="ChooseAwards" component={ChooseAwards} />
+        <App.Screen name="Ranking" component={Ranking} />
       </App.Navigator>
     </NavigationContainer>
   )
