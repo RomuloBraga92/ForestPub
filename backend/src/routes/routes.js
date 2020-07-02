@@ -31,6 +31,9 @@ router.post("/pub/signin", pubController.signin);
 router.get("/user", [authJwt.verifyToken], userController.info);
 
 //get pub
-router.get("/pub", [authJwt.verifyToken], pubController.info);
+router.get("/pub", pubController.info);
+
+//check-in
+router.post("/user/checkin", [authJwt.verifyToken], userController.checkin);
 
 module.exports = router;

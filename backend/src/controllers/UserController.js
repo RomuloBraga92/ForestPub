@@ -2,6 +2,8 @@ const config = require("../config/auth.config");
 const User = require("../database/models/User");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
+const { checkDuplicateUsernameOrEmail } = require("../middlewares/userVerifySignUp");
+const Pub = require("../database/models/Pub");
 
 module.exports = {
     async signup(req, res) {
@@ -78,7 +80,67 @@ module.exports = {
                 console.log("and there")
                 return res.status(200).send(found);
             })
+    },
+
+    async checkin(req, res) {
+        const pubId = req.body.pubId,
+              userId = req.userId;
+        const pub = await Pub.findById(pubId);
+        console.log("AAAAAAA")
+        console.log(pub)
+        User
+            .findById(userId)
+            .exec((err, user) => {
+                if(err) {
+                    return res.status(500).send({message: err});
+                }
+                if(!user) {
+                    return res.status(404).send({message: "No user found!"});
+                }
+
+                var updated = user;
+                if(updated.hasCheckedIn === true) {
+                    return res.status(401).send({message: "User has checked in before!"});
+                }
+                updated.hasCheckedIn = true;
+                updated.history.total += 1;
+                var exists = false;
+                for(let i=0; i<updated.history.pubs.length; i++) {
+                    if(updated.history.pubs[i].id === pubId) {
+                        updated.history.pubs[i].n += 1;
+                        exists = true;
+                        for(let j; j<pub.history.users.length; j++) {
+                            if(pub.history.users[j].id === userId) {
+                                pub.history.users[j].n += 1;
+                                break;
+                            }
+                        }
+                        break;
+                    }
+                }
+                if(exists === false)
+                {
+                    updated.history.pubs.push({id: pubId, n: 1});
+                    pub.history.users.push({id: userId, n: 1});
+
+                }
+                User.findByIdAndUpdate(userId, updated, (err, user) => {
+                    if(err) {
+                        return res.status(500).send({message: err});
+                    }
+                    if(!user) {
+                        return res.status(404).send({message: "User not found!"});
+                    }
+                    Pub.findByIdAndUpdate(pubId, pub, (err, pub) => {
+                        if(err) {
+                            return res.status(500).send({message: err});
+                        }
+                        if(!pub) {
+                            return res.status(404).send({message: "Pub not found!"});
+                        }
+                    });
+                    return res.status(200).send({user, pub});
+                })
+            })
     }
-
-
 }

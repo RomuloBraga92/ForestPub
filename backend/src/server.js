@@ -4,7 +4,7 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 
 //database connection
-const mongoDB = "mongodb+srv://user:password@cluster0-oimg3.mongodb.net/<dbname>?retryWrites=true&w=majority";
+const mongoDB = "mongodb+srv://equiperocketambev:rocketpassword@cluster0.ksrhl.mongodb.net/<dbname>?retryWrites=true&w=majority";
 mongoose.connect(mongoDB, {useNewUrlParser: true, useUnifiedTopology: true})
         .then(() => {
             console.log("Successfully connected to MongoDB");

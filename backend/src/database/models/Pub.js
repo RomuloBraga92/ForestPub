@@ -20,7 +20,12 @@ const PubSchema = mongoose.Schema({
             type: Number,
             default: 0
         },
-        users: [{String, Number}]
+        users: [
+            {
+                id: String, 
+                n: Number
+            }
+        ]
     }
     
 });
