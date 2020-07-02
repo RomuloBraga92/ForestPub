@@ -1,10 +1,8 @@
-import React, {useCallback, useState, useEffect, useMemo} from 'react';
+import React, {useCallback, useState, useEffect} from 'react';
 import {FontAwesome as Icon} from '@expo/vector-icons';
 import {useNavigation, useRoute} from '@react-navigation/native';
 import * as Location from 'expo-location';
-import { Alert } from 'react-native';
 
-import api from '../../services/api';
 import {
 Container,
 Header,
@@ -21,26 +19,22 @@ CheckInButtonText,
 ScanCodeButton,
 ButtonsContainer,
 } from './styles';
+import { Alert } from 'react-native';
 
-
-export default function MarkerDetail(){
+export default function MarkerDetail3(){
   const [currentPosition, setCurrentPosition] = useState([0,0]);
-  const [user, setUser] = useState({});
-  const [pubPosition, setPubPosition] = useState([0,0]);
+  const [barPosition, setBarPosition] = useState([0,0]);
   const [checkin, setCheckin] = useState(false);
-  const [pubData, setPubData] = useState({})
 
   const navigation = useNavigation();
-  const route = useRoute();
-  const routeParams = route.params;
 
   useEffect(()=>{
     async function loadPosition(){
       const location = await Location.getCurrentPositionAsync();
 
       const {latitude, longitude} = location.coords;
-      const userLatitude = latitude.toFixed(2);
-      const userLongitude = longitude.toFixed(2);
+      const userLatitude = latitude;
+      const userLongitude = longitude;
 
       setCurrentPosition([
         userLatitude,
@@ -51,34 +45,20 @@ export default function MarkerDetail(){
   },[])
 
   useEffect(()=>{
-    api.get(`/pubs/${routeParams.pub_id}`).then(response=>{
-      const {data} = response;
-      setPubData(data);
-    })
-  },[])
-
-  useEffect(()=>{
-    api.get('/users/1').then(response=>{
-      const {data} = response;
-      setUser(data);
-    })
-  },[])
-
-  useEffect(()=>{
     async function getPosition(){
-    const rua = pubData.street + ', ' + pubData.number;
+    const rua = 'Rua Antero Manuel de Sá Filho, 85';
 
     const location = await Location.geocodeAsync(rua);
-    const pubLatitude = location[0].latitude.toFixed(2);
-    const pubLongitude = location[0].longitude.toFixed(2);
+    const barLatitude = location[0].latitude.toFixed(2);
+    const barLongitude = location[0].longitude.toFixed(2);
 
-    setPubPosition([
-      pubLatitude,
-      pubLongitude,
+    setBarPosition([
+      barLatitude,
+      barLongitude,
     ])
     }
     getPosition();
-  },[pubData])
+  },[])
 
   const handleBackNavigation = useCallback(()=>{
     navigation.goBack();
@@ -88,12 +68,12 @@ export default function MarkerDetail(){
     setCheckin(false);
   },[])
 
-  const handleCheckIn = useCallback(async ()=>{
-    if(currentPosition[0] !== pubPosition[0] && currentPosition[1] !== pubPosition[1]){
-      Alert.alert('Erro no check-in', 'Vá para o bar selecionado para realizar o check-in')
+  const handleCheckIn = useCallback(()=>{
+    if(currentPosition[0] !== barPosition[0] && currentPosition[1] !== barPosition[1]){
+      Alert.alert('Erro no check-in', 'Vá para o bar selecionado para realizar o check-in');
     }
 
-    if(currentPosition[0] === pubPosition[0] && currentPosition[1] === pubPosition[1]){
+    if(currentPosition[0] === barPosition[0] && currentPosition[1] === barPosition[1]){
       Alert.alert('Sucesso', 'Seus pontos foram creditados!');
       setCheckin(true);
 
@@ -107,6 +87,7 @@ export default function MarkerDetail(){
 
   return(
     <Container>
+
       <Header>
         <BackButton onPress={handleBackNavigation}>
           <Icon name='chevron-left' size={30} color='#bbb' />
@@ -117,11 +98,11 @@ export default function MarkerDetail(){
         <BarImage>
           <ChecksContainer>
             <Icon name='user' size={20} color='#999591'/>
-            <ChecksText>{pubData.checkins}</ChecksText>
+            <ChecksText>23</ChecksText>
           </ChecksContainer>
         </BarImage>
-        <BarName>{pubData.name}</BarName>
-        <BarAddress>{`${pubData.street}, ${pubData.number}, ${pubData.district}, ${pubData.city} - ${pubData.uf}`}</BarAddress>
+        <BarName>Bar do João</BarName>
+        <BarAddress>Endereço do bar</BarAddress>
         <ButtonsContainer>
           <CheckInButton onPress={handleCheckIn} disabled={checkin}>
             <CheckInButtonText>Fazer check-in</CheckInButtonText>

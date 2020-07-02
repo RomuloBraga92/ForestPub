@@ -15,6 +15,7 @@ RegisterText,
 
 export default function OnBoarding(){
   const navigation = useNavigation();
+  const [test, setTest] = useState([]);
 
   const handleSignUpNavigation = useCallback(()=>{
     navigation.navigate('ChooseBarClientSignUp');

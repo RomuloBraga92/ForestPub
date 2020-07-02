@@ -5,6 +5,7 @@ import {FontAwesome as Icon} from '@expo/vector-icons';
 import {useNavigation} from '@react-navigation/native';
 import * as Location from 'expo-location';
 
+import api from '../../services/api';
 import tree from '../../assets/arvre-somos-nozes.png';
 import {
   Container,
@@ -20,11 +21,13 @@ import {
 
 export default function DashboardClient(){
   const [initialPosition, setInitialPosition] = useState([0,0]);
+  const [pubs, setPubs] = useState([]);
+  const [user, setUser] = useState([]);
 
   const navigation = useNavigation();
 
-  const handleNavigationMarkerDetail = useCallback(()=>{
-    navigation.navigate('MarkerDetail');
+  const handleNavigationMarkerDetail = useCallback((id)=>{
+    navigation.navigate('MarkerDetail', {pub_id:id});
   },[navigation])
 
   const handleNavigationProfile = useCallback(()=>{
@@ -65,14 +68,25 @@ export default function DashboardClient(){
     loadPosition();
   },[])
 
+  useEffect(() => {
+    api.get('/pubs').then(response=>{
+      const {data} = response;
+      setPubs(data);
+
+    api.get('/users').then(response=>{
+      const {data} = response;
+      setUser(data);
+    })
+    })
+  },[])
 
   return(
     <Container>
       <ClientHeader>
-        <Title>Bem Vindo, Fulano!</Title>
+        <Title>{`Bem Vindo, `}</Title>
         <MenuContainer>
           <MenuItem>
-            <MenuButton onPress={handleNavigationRanking} style={styles.shadow}>
+            <MenuButton onPress={handleNavigationRanking}>
               <Icon name='trophy' size={20} color='#fff'/>
             </MenuButton>
             <MenuTitle>Ranking</MenuTitle>
@@ -97,7 +111,6 @@ export default function DashboardClient(){
           </MenuItem>
         </MenuContainer>
       </ClientHeader>
-
       <MapContainer>
           {initialPosition[0] !== 0 && (
             <MapView style={styles.map}
@@ -108,26 +121,19 @@ export default function DashboardClient(){
             longitudeDelta: 0.014,
           }}
           >
-          <Marker
-          coordinate={{
-            latitude: -23.0250808,
-            longitude: -43.4905615,
-          }}
-          onPress={handleNavigationMarkerDetail}
-          title="Bar do zé"
-          description="Endereco"
-          image={tree}
+          {pubs.map(pub=>(
+            <Marker
+            key={pub.id}
+            coordinate={{
+            latitude: pub.latitude,
+            longitude: pub.longitude,
+            }}
+            onPress={()=>handleNavigationMarkerDetail(pub.id)}
+            title={pub.name}
+            description={`${pub.street}, ${pub.number}, ${pub.district}, ${pub.city} - ${pub.uf}`}
+            image={tree}
           />
-          <Marker
-          coordinate={{
-            latitude: -23.050389,
-            longitude: -43.4905615,
-          }}
-          onPress={handleNavigationMarkerDetail}
-          title="Bar do marco"
-          description="Endereco"
-          image={tree}
-          />
+          ))}
           </MapView>
           )}
       </MapContainer>
@@ -147,17 +153,5 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     resizeMode: 'cover',
   },
-
-  shadow:{
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 8,
-      },
-    shadowOpacity: 0.46,
-    shadowRadius: 11.14,
-
-    elevation: 17,
-  }
 
 })

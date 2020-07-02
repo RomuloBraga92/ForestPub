@@ -1,4 +1,4 @@
-import React, {useState, useCallback, useMemo} from 'react';
+import React, {useState, useCallback, useMemo, useEffect} from 'react';
 import {Feather as Icon} from '@expo/vector-icons';
 import {useNavigation} from "@react-navigation/native";
 
@@ -17,8 +17,10 @@ import {
 import { ScrollView } from 'react-native-gesture-handler';
 import { Alert } from 'react-native';
 
+import api from '../../services/api';
+
 export default function ChooseAwards(){
-  const[level, setLevel] = useState(1);
+  const[level, setLevel] = useState(3);
   const[selected, setSelected] = useState([
     false,
     false,
@@ -34,14 +36,22 @@ export default function ChooseAwards(){
 
   const navigation = useNavigation();
 
+  useEffect(()=>{
+    api.get('/users').then(response=>{
+      const {data} = response;
+      setLevel(data[0].level);
+    })
+  },[])
+
   const handleGoBack = useCallback(()=>{
     navigation.goBack();
   },[navigation])
 
   const handleCheckLevel = useCallback((playerLevel, awardLevel)=>{
     if(playerLevel >= awardLevel){
+      setSelected([...selected, selected[awardLevel-1] = true])
       Alert.alert('Parabéns!', 'Sua recompensa já pode ser resgatada!');
-      setSelected([selected[awardLevel-1] = true])
+
     }
     if(playerLevel < awardLevel){
       Alert.alert('Opa!', 'Você ainda não alcaçou este nível!');

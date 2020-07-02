@@ -1,14 +1,27 @@
-import React from 'react';
+import React, { useCallback } from 'react';
+import {Feather as Icon} from '@expo/vector-icons';
+import {useNavigation} from '@react-navigation/native';
 
 import {
   Container,
-  ContainerText,
+  HighlightedContainer,
+  BackButton,
 } from './styles';
 
 export default function Ranking(){
+  const navigation = useNavigation();
+
+  const handleGoBack = useCallback(()=>{
+    navigation.goBack();
+  },[navigation])
+
   return(
     <Container>
-      <ContainerText>Ranking</ContainerText>
+      <BackButton onPress={handleGoBack}>
+        <Icon name="chevron-left" size={24} color="#999591" />
+      </BackButton>
+
+      <HighlightedContainer></HighlightedContainer>
     </Container>
   );
 }

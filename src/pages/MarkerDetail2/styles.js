@@ -60,13 +60,13 @@ export const BarName = styled.Text`
   font-size: 30px;
   font-family: 'Poppins_500Medium';
   color: #999591;
+  margin-top: 15px;
 `;
 
 export const BarAddress = styled.Text`
   font-size: 20px;
   font-family: 'Poppins_400Regular';
   color: #999591;
-  max-width: 350px;
 `;
 
 export const CheckInButton = styled.TouchableOpacity`
