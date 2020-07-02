@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useState, useEffect } from 'react';
 import {Feather as Icon} from '@expo/vector-icons';
 import {useNavigation} from '@react-navigation/native';
 import {
@@ -7,6 +7,8 @@ import {
   View,
   ScrollView,
 } from 'react-native';
+
+import api from '../../services/api';
 
 import {
   Container,
@@ -21,6 +23,14 @@ import {
 
 export default function ProfileClient(){
   const navigation = useNavigation();
+  const [user, setUser] = useState({})
+
+  useEffect(()=>{
+    api.get('/users/1').then(response=>{
+      const {data} = response;
+      setUser(data);
+    })
+  },[])
 
   const handleGoBack = useCallback(()=>{
     navigation.goBack();
@@ -40,17 +50,18 @@ export default function ProfileClient(){
           <Container>
             <BackButton onPress={handleGoBack}>
               <Icon name="chevron-left" size={24} color="#999591" />
+              {console.log(user)}
             </BackButton>
 
             <UserAvatarButton onPress={()=>{}}>
               <UserAvatar/>
               <Level>
-                <LevelText>Nivel 1</LevelText>
+                <LevelText>Nível {user.level}</LevelText>
               </Level>
             </UserAvatarButton>
 
             <View>
-              <Title>Fulano</Title>
+              <Title>{user.name}</Title>
             </View>
           </Container>
         </ScrollView>

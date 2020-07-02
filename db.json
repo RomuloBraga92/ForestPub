@@ -1,8 +1,11 @@
 {
   "users": [
     {
-      "points": null,
-      "id": 1
+      "id": 1,
+      "name": "Equipe Rocket",
+      "email": "romulo@gmail.com",
+      "level": 2,
+      "points": 0
     }
   ],
   "pubs": [

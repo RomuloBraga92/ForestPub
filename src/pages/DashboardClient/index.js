@@ -73,7 +73,7 @@ export default function DashboardClient(){
       const {data} = response;
       setPubs(data);
 
-    api.get('/users').then(response=>{
+    api.get('/users/1').then(response=>{
       const {data} = response;
       setUser(data);
     })
@@ -83,7 +83,7 @@ export default function DashboardClient(){
   return(
     <Container>
       <ClientHeader>
-        <Title>{`Bem Vindo, `}</Title>
+        <Title>{`Bem Vindo, ${user.name}`}</Title>
         <MenuContainer>
           <MenuItem>
             <MenuButton onPress={handleNavigationRanking}>
