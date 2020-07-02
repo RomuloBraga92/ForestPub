@@ -65,7 +65,7 @@ module.exports = {
 
     async info(req, res) {
         Pub
-            .findById(req.userId)
+            .findById(req.body.id)
             .exec((err, pub) => {
                 if(err) {
                     return res.status(500).send({message: err})

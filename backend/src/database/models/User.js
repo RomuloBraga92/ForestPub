@@ -19,7 +19,16 @@ const UserSchema = mongoose.Schema({
             type: Number,
             default: 0
         },
-        pubs: [{String, Number}]
+        pubs: [
+            {
+                id: String, 
+                n: Number
+            }
+        ]
+    },
+    hasCheckedIn: {
+        type: Boolean,
+        default: false
     }
 });
 
