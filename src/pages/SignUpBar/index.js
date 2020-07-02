@@ -1,15 +1,17 @@
-import React, { useCallback, useRef } from 'react';
+import React, { useCallback, useRef, useState } from 'react';
 import { Form } from '@unform/mobile';
-import { KeyboardAvoidingView, ScrollView } from 'react-native';
-import {useNavigation} from '@react-navigation/native'
+import { KeyboardAvoidingView, ScrollView, StyleSheet } from 'react-native';
+import {useNavigation} from '@react-navigation/native';
+import { CheckBox } from 'react-native-elements'
 
 import Button from '../../components/Button';
 import Input from '../../components/input';
-import {Container, Title, MiniTitle} from './styles';
+import {Container, Title, MiniTitle} from './styles'
 
 export default function SignIn(){
   const formRef = useRef(null);
   const navigation = useNavigation();
+  const [isCheck, setIsCheck] = useState(false);
 
   const handleDashboardBar = useCallback(()=>{
     navigation.navigate('DashboardBar');
@@ -95,10 +97,41 @@ export default function SignIn(){
             placeholder="UF"
             />
 
-            <Button onPress={() => formRef.current.submitForm()} style={{width: 200, marginLeft: 50}}>Cadastrar</Button>
+            <CheckBox
+              center
+              title='Aceito as políticas do aplicativo'
+              checked={isCheck}
+              containerStyle={styles.checkboxContainer}
+              onPress={()=>setIsCheck(!isCheck)}
+            />
+
+
+            <Button disabled={!isCheck} onPress={() => formRef.current.submitForm()}
+            style={[
+              styles.buttonContainer,
+              isCheck ? {} : styles.buttonDisabled
+            ]}>
+            Cadastrar
+            </Button>
           </Form>
         </Container>
       </ScrollView>
     </KeyboardAvoidingView>
   )
 }
+
+const styles = StyleSheet.create({
+  checkboxContainer: {
+    backgroundColor: 'transparent',
+    borderWidth: 0
+  },
+
+  buttonContainer:{
+    width: 200,
+    marginLeft: '12%'
+  },
+
+  buttonDisabled:{
+    opacity: 0.4
+  }
+})

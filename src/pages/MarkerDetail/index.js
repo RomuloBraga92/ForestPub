@@ -5,11 +5,12 @@ import * as Location from 'expo-location';
 import { Alert } from 'react-native';
 
 import api from '../../services/api';
+import pubImage from '../../assets/pubImage.jpeg';
 import {
 Container,
 Header,
 BackButton,
-BackButtonText,
+ImageContainer,
 Content,
 BarImage,
 BarName,
@@ -27,8 +28,10 @@ export default function MarkerDetail(){
   const [currentPosition, setCurrentPosition] = useState([0,0]);
   const [user, setUser] = useState({});
   const [pubPosition, setPubPosition] = useState([0,0]);
-  const [checkin, setCheckin] = useState(false);
-  const [pubData, setPubData] = useState({})
+  const [pubData, setPubData] = useState({});
+  var points = user.points;
+  var level = user.level;
+  var checkin = user.isCheck;
 
   const navigation = useNavigation();
   const route = useRoute();
@@ -84,8 +87,10 @@ export default function MarkerDetail(){
     navigation.goBack();
   },[])
 
-  const handleUncheckIn = useCallback(()=>{
+  const handleUncheckIn = useCallback(async ()=>{
     setCheckin(false);
+    await api.patch('users/1', {isCheck: checkin});
+
   },[])
 
   const handleCheckIn = useCallback(async ()=>{
@@ -94,12 +99,17 @@ export default function MarkerDetail(){
     }
 
     if(currentPosition[0] === pubPosition[0] && currentPosition[1] === pubPosition[1]){
-      Alert.alert('Sucesso', 'Seus pontos foram creditados!');
+      Alert.alert('Sucesso', '+10 pontos!');
       setCheckin(true);
+      await api.patch('users/1', {isCheck: checkin});
+      points += 10;
+      await api.patch('/users/1', {points: points});
+      level = Math.floor(points/100);
+      await api.patch('/users/1', {level: level});
 
       setTimeout(handleUncheckIn, 5000);
     }
-  },[])
+  },[points, currentPosition, pubPosition])
 
   const handleCameraClick = useCallback(()=>{
     navigation.navigate('ScanCode');
@@ -114,19 +124,21 @@ export default function MarkerDetail(){
       </Header>
 
       <Content>
-        <BarImage>
+        <ImageContainer>
+        <BarImage source={pubImage}/>
           <ChecksContainer>
             <Icon name='user' size={20} color='#999591'/>
             <ChecksText>{pubData.checkins}</ChecksText>
           </ChecksContainer>
-        </BarImage>
+        </ImageContainer>
+
         <BarName>{pubData.name}</BarName>
         <BarAddress>{`${pubData.street}, ${pubData.number}, ${pubData.district}, ${pubData.city} - ${pubData.uf}`}</BarAddress>
         <ButtonsContainer>
           <CheckInButton onPress={handleCheckIn} disabled={checkin}>
             <CheckInButtonText>Fazer check-in</CheckInButtonText>
           </CheckInButton>
-          <ScanCodeButton onPress={handleCameraClick} disabled={!checkin}>
+          <ScanCodeButton onPress={handleCameraClick} disabled={!user.isCheck}>
             <Icon name='barcode' size={20} color='#fff'/>
           </ScanCodeButton>
         </ButtonsContainer>

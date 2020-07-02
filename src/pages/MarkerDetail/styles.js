@@ -17,22 +17,19 @@ export const BackButton = styled.TouchableOpacity`
   align-items: center;
 `;
 
-export const BackButtonText = styled.Text`
-  font-size: 20px;
-  color: #999591;
-`;
-
 export const Content = styled.View`
   flex: 1;
   align-items: center;
 `;
 
-export const BarImage = styled.View`
+export const ImageContainer = styled.View`
   width: 100%;
   height: 60%;
-  border-radius: 10px;
-  background: #ccc;
-  position: relative;
+`;
+
+export const BarImage = styled.Image`
+  width: 100%;
+  height: 100%;
   margin-bottom: 30px;
 `;
 
@@ -60,6 +57,7 @@ export const BarName = styled.Text`
   font-size: 30px;
   font-family: 'Poppins_500Medium';
   color: #999591;
+  margin-top: 10px;
 `;
 
 export const BarAddress = styled.Text`

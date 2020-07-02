@@ -2,10 +2,11 @@
   "users": [
     {
       "id": 1,
-      "name": "Equipe Rocket",
-      "email": "romulo@gmail.com",
-      "level": 2,
-      "points": 0
+      "name": "Ambev",
+      "email": "ambev@gmail.com",
+      "level": 3,
+      "points": 350,
+      "isCheck": false
     }
   ],
   "pubs": [
