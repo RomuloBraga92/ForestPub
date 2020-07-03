@@ -6,7 +6,11 @@ import {useNavigation} from '@react-navigation/native';
 import * as Location from 'expo-location';
 
 import api from '../../services/api';
-import tree from '../../assets/arvre-somos-nozes.png';
+import tree from '../../assets/icone-pin.png';
+import logout from '../../assets/icone-sair.png';
+import profile from '../../assets/icone-perfil.png';
+import awards from '../../assets/icone-premios.png';
+import ranking from '../../assets/icone-ranking.png';
 import {
   Container,
   ClientHeader,
@@ -15,7 +19,8 @@ import {
   MenuContainer,
   MenuItem,
   MenuButton,
-  MenuTitle
+  MenuTitle,
+  MenuIcon,
 } from './styles';
 
 
@@ -83,29 +88,29 @@ export default function DashboardClient(){
   return(
     <Container>
       <ClientHeader>
-        <Title>{`Bem Vindo, ${user.name}`}</Title>
+        <Title>Inicie sua jornada!</Title>
         <MenuContainer>
           <MenuItem>
-            <MenuButton onPress={handleNavigationRanking}>
-              <Icon name='trophy' size={20} color='#fff'/>
+            <MenuButton onPress={handleNavigationRanking} activeOpacity={0.5}>
+              <MenuIcon source={ranking}/>
             </MenuButton>
             <MenuTitle>Ranking</MenuTitle>
           </MenuItem>
           <MenuItem>
-            <MenuButton onPress={handleNavigationChooseAwards}>
-              <Icon name='star' size={20} color='#fff'/>
+            <MenuButton onPress={handleNavigationChooseAwards} activeOpacity={0.5}>
+              <MenuIcon source={awards}/>
             </MenuButton>
             <MenuTitle>Prêmios</MenuTitle>
           </MenuItem>
           <MenuItem>
-            <MenuButton onPress={handleNavigationProfile}>
-              <Icon name='user' size={20} color='#fff'/>
+            <MenuButton onPress={handleNavigationProfile} activeOpacity={0.5}>
+              <MenuIcon source={profile}/>
             </MenuButton>
             <MenuTitle>Perfil</MenuTitle>
           </MenuItem>
           <MenuItem>
-            <MenuButton onPress={handleNavigationLogOut}>
-              <Icon name='sign-out' size={20} color='#fff'/>
+            <MenuButton onPress={handleNavigationLogOut} activeOpacity={0.5}>
+              <MenuIcon source={logout}/>
             </MenuButton>
             <MenuTitle>Sair</MenuTitle>
           </MenuItem>

@@ -1,14 +1,14 @@
 import React, { useCallback, useState, useEffect } from 'react';
 import {Feather as Icon} from '@expo/vector-icons';
+import {FontAwesome as Icon2} from '@expo/vector-icons';
 import {useNavigation} from '@react-navigation/native';
 import {
-  KeyboardAvoidingView,
-  Platform,
   View,
-  ScrollView,
 } from 'react-native';
 
 import api from '../../services/api';
+import profile from '../../assets/antonio-perfil.jpg';
+import background from '../../assets/bg-telas.jpg'
 
 import {
   Container,
@@ -37,26 +37,17 @@ export default function ProfileClient(){
   },[navigation])
 
   return(
-    <>
-      <KeyboardAvoidingView
-        style={{ flex: 1 }}
-        enabled
-        behavior={Platform.OS === 'ios' ? 'padding' : undefined}
-      >
-        <ScrollView
-          contentContainerStyle={{ flex: 1 }}
-          keyboardShouldPersistTaps="handled"
-        >
-          <Container>
+          <Container source={background}>
             <BackButton onPress={handleGoBack}>
-              <Icon name="chevron-left" size={24} color="#999591" />
+              <Icon name="arrow-left" size={24} color="#f4f4f4" />
               {console.log(user)}
             </BackButton>
 
             <UserAvatarButton onPress={()=>{}}>
-              <UserAvatar/>
+              <UserAvatar source={profile}/>
               <Level>
-                <LevelText>Nível {user.level}</LevelText>
+                <Icon2 name="star" size={22} color='#FFC44A'/>
+                <LevelText>{user.level}</LevelText>
               </Level>
             </UserAvatarButton>
 
@@ -64,8 +55,5 @@ export default function ProfileClient(){
               <Title>{user.name}</Title>
             </View>
           </Container>
-        </ScrollView>
-      </KeyboardAvoidingView>
-    </>
   )
 }

@@ -14,14 +14,14 @@ export const ClientHeader = styled.View`
 export const Title = styled.Text`
   font-size: 50px;
   font-family: 'Poppins_500Medium';
-  color: #999591;
+  color: #5B271F;
 `;
 
 export const MenuContainer = styled.View`
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  padding: 10px 30px;
+  padding: 10px 10px;
   margin-bottom: 10px;
 `;
 
@@ -29,11 +29,19 @@ export const MenuItem = styled.View`
   align-items: center;
   justify-content: center;
 `;
-export const MenuButton = styled.TouchableHighlight`
-  width: 50px;
-  height: 50px;
-  background: #999591;
-  border-radius: 25px;
+export const MenuButton = styled.TouchableOpacity`
+  width: 70px;
+  height: 70px;
+  border-width: 3px;
+  border-color: #FFC44A;
+  border-radius: 35px;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const MenuIcon = styled.Image`
+  width: 81px;
+  height: 81px;
   align-items: center;
   justify-content: center;
 `;
@@ -41,7 +49,7 @@ export const MenuButton = styled.TouchableHighlight`
 export const MenuTitle = styled.Text`
   font-size: 18px;
   font-family: 'Poppins_400Regular';
-  color:  #999591;
+  color:  #5B271F;
   margin-top: 10px;
 `;
 

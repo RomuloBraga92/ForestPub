@@ -2,6 +2,9 @@ import React, { useCallback } from 'react';
 import {useNavigation} from '@react-navigation/native'
 
 import {Container, Title, BlocksContainer, BlockContainer, Block, BlockText} from './styles';
+import clientImage from '../../assets/foto-clientes.jpg';
+import pubImage from '../../assets/foto-bar.jpg';
+import background from '../../assets/bg-telas.jpg';
 
 export default function ChooseBarClientSignUp() {
   const navigation = useNavigation();
@@ -16,17 +19,17 @@ export default function ChooseBarClientSignUp() {
 
   return(
     <>
-      <Container>
+      <Container source={background}>
         <Title>Cadastre-se Agora!</Title>
 
         <BlocksContainer>
-          <BlockContainer>
-            <Block onPress={handleSignUpClient}/>
-            <BlockText>Cliente</BlockText>
+          <BlockContainer onPress={handleSignUpClient}>
+            <Block source={clientImage}/>
+            <BlockText>Usuário</BlockText>
           </BlockContainer>
 
-          <BlockContainer>
-            <Block onPress={handleSignUpBar}/>
+          <BlockContainer onPress={handleSignUpBar}>
+            <Block source={pubImage}/>
             <BlockText>Bar</BlockText>
           </BlockContainer>
         </BlocksContainer>

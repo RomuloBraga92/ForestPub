@@ -2,6 +2,7 @@ import React, {useState, useCallback, useMemo, useEffect} from 'react';
 import {Feather as Icon} from '@expo/vector-icons';
 import {useNavigation} from "@react-navigation/native";
 
+import levelAwards from '../../assets/icone-premios_1.png';
 import {
   Container,
   BackButton,
@@ -18,6 +19,7 @@ import { ScrollView } from 'react-native-gesture-handler';
 import { Alert } from 'react-native';
 
 import api from '../../services/api';
+import background from '../../assets/bg-telas.jpg';
 
 export default function ChooseAwards(){
   const[level, setLevel] = useState(3);
@@ -59,9 +61,9 @@ export default function ChooseAwards(){
   },[])
 
   return(
-    <Container>
+    <Container source={background}>
       <BackButton onPress={handleGoBack}>
-        <Icon name="chevron-left" size={24} color="#999591" />
+        <Icon name="arrow-left" size={24} color="#f4f4f4" />
       </BackButton>
       <Header>
         <Title>Resgate as recompensas do seu nível!</Title>
@@ -71,61 +73,61 @@ export default function ChooseAwards(){
     <ScrollView>
       <Content>
         <AwardRowContainer>
-          <AwardBlockContainer>
-            <AwardBlock disabled={selected[0]} onPress={() => handleCheckLevel(level, 1)}/>
+          <AwardBlockContainer disabled={selected[0]} onPress={() => handleCheckLevel(level, 1)}>
+            <AwardBlock source={levelAwards} disabled={selected[0]}/>
             <AwardRank>Nivel 1</AwardRank>
           </AwardBlockContainer>
 
-          <AwardBlockContainer>
-            <AwardBlock disabled={selected[1]} onPress={() => handleCheckLevel(level, 2)}/>
+          <AwardBlockContainer disabled={selected[1]} onPress={() => handleCheckLevel(level, 2)}>
+            <AwardBlock source={levelAwards} disabled={selected[1]}/>
             <AwardRank>Nivel 2</AwardRank>
           </AwardBlockContainer>
         </AwardRowContainer>
 
         <AwardRowContainer>
-          <AwardBlockContainer>
-            <AwardBlock disabled={selected[2]} onPress={() => handleCheckLevel(level, 3)}/>
+          <AwardBlockContainer disabled={selected[2]} onPress={() => handleCheckLevel(level, 3)}>
+            <AwardBlock source={levelAwards} disabled={selected[2]}/>
             <AwardRank>Nivel 3</AwardRank>
           </AwardBlockContainer>
 
-          <AwardBlockContainer>
-            <AwardBlock disabled={selected[3]} onPress={() => handleCheckLevel(level, 4)}/>
+          <AwardBlockContainer disabled={selected[3]} onPress={() => handleCheckLevel(level, 4)}>
+            <AwardBlock source={levelAwards} disabled={selected[3]}/>
             <AwardRank>Nivel 4</AwardRank>
           </AwardBlockContainer>
         </AwardRowContainer>
 
         <AwardRowContainer>
-          <AwardBlockContainer>
-            <AwardBlock disabled={selected[4]} onPress={() => handleCheckLevel(level, 5)}/>
+          <AwardBlockContainer disabled={selected[4]} onPress={() => handleCheckLevel(level, 5)}>
+            <AwardBlock source={levelAwards} disabled={selected[4]}/>
             <AwardRank>Nivel 5</AwardRank>
           </AwardBlockContainer>
 
-          <AwardBlockContainer>
-            <AwardBlock disabled={selected[5]} onPress={() => handleCheckLevel(level, 6)}/>
+          <AwardBlockContainer disabled={selected[5]} onPress={() => handleCheckLevel(level, 6)}>
+            <AwardBlock source={levelAwards} disabled={selected[5]}/>
             <AwardRank>Nivel 6</AwardRank>
           </AwardBlockContainer>
         </AwardRowContainer>
 
         <AwardRowContainer>
-          <AwardBlockContainer>
-            <AwardBlock disabled={selected[6]} onPress={() => handleCheckLevel(level, 7)}/>
+          <AwardBlockContainer disabled={selected[6]} onPress={() => handleCheckLevel(level, 7)}>
+            <AwardBlock source={levelAwards} disabled={selected[6]}/>
             <AwardRank>Nivel 7</AwardRank>
           </AwardBlockContainer>
 
-          <AwardBlockContainer>
-            <AwardBlock disabled={selected[7]} onPress={() => handleCheckLevel(level, 8)}/>
+          <AwardBlockContainer disabled={selected[7]} onPress={() => handleCheckLevel(level, 8)}>
+            <AwardBlock source={levelAwards} disabled={selected[7]}/>
             <AwardRank>Nivel 8</AwardRank>
           </AwardBlockContainer>
         </AwardRowContainer>
 
         <AwardRowContainer>
-          <AwardBlockContainer>
-            <AwardBlock disabled={selected[8]} onPress={() => handleCheckLevel(level, 9)}/>
+          <AwardBlockContainer disabled={selected[8]} onPress={() => handleCheckLevel(level, 9)}>
+            <AwardBlock source={levelAwards} disabled={selected[8]}/>
             <AwardRank>Nivel 9</AwardRank>
           </AwardBlockContainer>
 
-          <AwardBlockContainer>
-            <AwardBlock disabled={selected[9]} onPress={() => handleCheckLevel(level, 10)}/>
+          <AwardBlockContainer disabled={selected[9]} onPress={() => handleCheckLevel(level, 10)}>
+            <AwardBlock source={levelAwards} disabled={selected[9]}/>
             <AwardRank>Nivel 10</AwardRank>
           </AwardBlockContainer>
         </AwardRowContainer>

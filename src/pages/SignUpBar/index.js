@@ -6,7 +6,9 @@ import { CheckBox } from 'react-native-elements'
 
 import Button from '../../components/Button';
 import Input from '../../components/input';
-import {Container, Title, MiniTitle} from './styles'
+import background from '../../assets/bg-telas.jpg';
+
+import {OutsideContainer, Container, Title, MiniTitle} from './styles'
 
 export default function SignIn(){
   const formRef = useRef(null);
@@ -18,6 +20,7 @@ export default function SignIn(){
   },[])
 
   return(
+    <OutsideContainer source={background}>
     <KeyboardAvoidingView
         style={{ flex: 1}}
         enabled
@@ -28,7 +31,7 @@ export default function SignIn(){
       >
         <Container>
           <Title>Cadastre-se Agora!</Title>
-          <MiniTitle>Dados empresarias</MiniTitle>
+          <MiniTitle>Dados do seu bar!</MiniTitle>
           <Form ref={formRef} onSubmit={handleDashboardBar} style={{marginTop: 20}}>
             <Input
             type="text"
@@ -103,6 +106,8 @@ export default function SignIn(){
               checked={isCheck}
               containerStyle={styles.checkboxContainer}
               onPress={()=>setIsCheck(!isCheck)}
+              textStyle={{color: '#f4f4f4'}}
+              checkedColor='#6A9B14'
             />
 
 
@@ -117,13 +122,15 @@ export default function SignIn(){
         </Container>
       </ScrollView>
     </KeyboardAvoidingView>
+  </OutsideContainer>
   )
 }
 
 const styles = StyleSheet.create({
   checkboxContainer: {
     backgroundColor: 'transparent',
-    borderWidth: 0
+    borderWidth: 0,
+    color: '#f4f4f4'
   },
 
   buttonContainer:{

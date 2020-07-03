@@ -5,12 +5,12 @@ export const Container = styled.View`
   height: 50px;
   padding: 0 16px;
   background: #fff;
-  border-radius: 10px;
+  border-radius: 20px;
   margin-bottom: 15px;
   flex-direction: row;
   align-items: center;
   border-width: 2px;
-  border-color: #232129;
+  border-color: #5B271F;
 `;
 
 export const MyInput = styled.TextInput`

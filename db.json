@@ -2,10 +2,10 @@
   "users": [
     {
       "id": 1,
-      "name": "Ambev",
-      "email": "ambev@gmail.com",
-      "level": 3,
-      "points": 350,
+      "name": "Antônio Silva",
+      "email": "antoniosilva@gmail.com",
+      "level": 8,
+      "points": 890,
       "isCheck": false
     }
   ],
@@ -25,7 +25,7 @@
     },
     {
       "id": 2,
-      "name": "Bar Floresta Amazonica",
+      "name": "Bar Boteco do Esquenta",
       "email": "amazonica@gmail.com",
       "checkins": 0,
       "latitude": -23.0280808,
@@ -38,11 +38,24 @@
     },
     {
       "id": 3,
-      "name": "Bar Floresta Atlântica",
+      "name": "Bar Unidos da Cerveja",
       "email": "atlantica@gmail.com",
-      "checkins": 0,
+      "checkins": 30,
       "latitude": -23.02908,
       "longitude": -43.4975615,
+      "street": "Rua Antero Manuel de Sá Filho",
+      "number": "144",
+      "district": "Recreio dos bandeirantes",
+      "city": "Rio de janeiro",
+      "uf": "RJ"
+    },
+    {
+      "id": 4,
+      "name": "Bar Floresta Temperada",
+      "email": "temperada@gmail.com",
+      "checkins": 19,
+      "latitude": -23.03208,
+      "longitude": -43.5375615,
       "street": "Rua Antero Manuel de Sá Filho",
       "number": "144",
       "district": "Recreio dos bandeirantes",

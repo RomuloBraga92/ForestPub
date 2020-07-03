@@ -5,7 +5,9 @@ import {useNavigation} from '@react-navigation/native'
 
 import Button from '../../components/Button';
 import Input from '../../components/input';
-import {Container, Title} from './styles';
+import background from '../../assets/bg-telas.jpg';
+
+import {OutsideContainer, Container, Title} from './styles';
 
 export default function SignIn(){
   const navigation = useNavigation()
@@ -16,6 +18,7 @@ export default function SignIn(){
   },[])
 
   return(
+    <OutsideContainer source={background}>
     <KeyboardAvoidingView
         style={{ flex: 1}}
         enabled
@@ -44,10 +47,11 @@ export default function SignIn(){
             returnKeyType="send"
             />
 
-            <Button onPress={() => formRef.current.submitForm()} style={{width: 200, marginLeft: 50}}>Entrar</Button>
+            <Button onPress={() => formRef.current.submitForm()}>Entrar</Button>
           </Form>
         </Container>
       </ScrollView>
     </KeyboardAvoidingView>
+    </OutsideContainer>
   )
 }

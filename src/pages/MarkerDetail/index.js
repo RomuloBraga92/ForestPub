@@ -4,6 +4,7 @@ import {useNavigation, useRoute} from '@react-navigation/native';
 import * as Location from 'expo-location';
 import { Alert } from 'react-native';
 
+import scanCode from '../../assets/icone-sacn.png';
 import api from '../../services/api';
 import pubImage from '../../assets/pubImage.jpeg';
 import {
@@ -21,17 +22,20 @@ CheckInButton,
 CheckInButtonText,
 ScanCodeButton,
 ButtonsContainer,
+ScanCodeIcon,
 } from './styles';
 
 
 export default function MarkerDetail(){
   const [currentPosition, setCurrentPosition] = useState([0,0]);
   const [user, setUser] = useState({});
+  const [checkin, setCheckin] = useState(false);
   const [pubPosition, setPubPosition] = useState([0,0]);
   const [pubData, setPubData] = useState({});
   var points = user.points;
   var level = user.level;
-  var checkin = user.isCheck;
+  var pubChecks = pubData.checkins;
+  var isChecked = user.isCheck;
 
   const navigation = useNavigation();
   const route = useRoute();
@@ -87,10 +91,10 @@ export default function MarkerDetail(){
     navigation.goBack();
   },[])
 
-  const handleUncheckIn = useCallback(async ()=>{
+  const handleUncheckIn = useCallback(async()=>{
     setCheckin(false);
-    await api.patch('users/1', {isCheck: checkin});
-
+    isChecked = false;
+    await api.patch('/users/1', {isCheck: isChecked })
   },[])
 
   const handleCheckIn = useCallback(async ()=>{
@@ -101,15 +105,19 @@ export default function MarkerDetail(){
     if(currentPosition[0] === pubPosition[0] && currentPosition[1] === pubPosition[1]){
       Alert.alert('Sucesso', '+10 pontos!');
       setCheckin(true);
-      await api.patch('users/1', {isCheck: checkin});
+      setTimeout(handleUncheckIn, 10000);
+
       points += 10;
       await api.patch('/users/1', {points: points});
       level = Math.floor(points/100);
       await api.patch('/users/1', {level: level});
+      pubChecks += 1;
+      await api.patch(`/pubs/${routeParams.pub_id}`, {checkins: pubChecks})
+      isChecked = true;
+      await api.patch('/users/1', {isCheck: isChecked})
 
-      setTimeout(handleUncheckIn, 5000);
     }
-  },[points, currentPosition, pubPosition])
+  },[currentPosition, pubPosition])
 
   const handleCameraClick = useCallback(()=>{
     navigation.navigate('ScanCode');
@@ -119,7 +127,7 @@ export default function MarkerDetail(){
     <Container>
       <Header>
         <BackButton onPress={handleBackNavigation}>
-          <Icon name='chevron-left' size={30} color='#bbb' />
+          <Icon name='arrow-left' size={24} color='#5B271F' />
         </BackButton>
       </Header>
 
@@ -127,7 +135,7 @@ export default function MarkerDetail(){
         <ImageContainer>
         <BarImage source={pubImage}/>
           <ChecksContainer>
-            <Icon name='user' size={20} color='#999591'/>
+            <Icon name='user' size={20} color='#5B271F'/>
             <ChecksText>{pubData.checkins}</ChecksText>
           </ChecksContainer>
         </ImageContainer>
@@ -138,8 +146,8 @@ export default function MarkerDetail(){
           <CheckInButton onPress={handleCheckIn} disabled={checkin}>
             <CheckInButtonText>Fazer check-in</CheckInButtonText>
           </CheckInButton>
-          <ScanCodeButton onPress={handleCameraClick} disabled={!user.isCheck}>
-            <Icon name='barcode' size={20} color='#fff'/>
+          <ScanCodeButton onPress={handleCameraClick} disabled={!checkin}>
+            <ScanCodeIcon source={scanCode}/>
           </ScanCodeButton>
         </ButtonsContainer>
       </Content>

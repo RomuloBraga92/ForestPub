@@ -1,6 +1,6 @@
 import styled from 'styled-components/native';
 
-export const Container = styled.View`
+export const Container = styled.ImageBackground`
   flex: 1;
 `;
 
@@ -19,13 +19,13 @@ export const Header = styled.View`
 export const Title = styled.Text`
   font-size: 40px;
   font-family: 'Poppins_500Medium';
-  color: #999591;
+  color: #f4f4f4;
 `;
 
 export const MiniTitle = styled.Text`
   font-size: 25px;
   font-family: 'Poppins_400Regular';
-  color: #312e38;
+  color: #f4f4f4;
   margin-top: 10px;
 `;
 
@@ -39,7 +39,7 @@ export const AwardRowContainer = styled.View`
   justify-content: center;
 `;
 
-export const AwardBlockContainer = styled.View`
+export const AwardBlockContainer = styled.TouchableOpacity`
   flex-direction: column;
   margin-left: 10px;
   align-items: center;
@@ -47,19 +47,23 @@ export const AwardBlockContainer = styled.View`
 
 `;
 
-export const AwardBlock = styled.TouchableOpacity`
+export const AwardBlock = styled.Image`
   width: 150px;
   height: 150px;
-  background: #999591;
   border-radius: 10px;
   margin: 6px 20px;
 
-  opacity: ${props => props.disabled ? 0.2 : 1}
+  opacity: ${props => props.disabled ? 0.4 : 1}
 `;
 
 export const AwardRank = styled.Text`
   font-size: 18px;
-  font-family: 'Poppins_400Regular';
-  margin-bottom: 15px;
-  color: #999591;
+  font-family: 'Poppins_500Medium';
+  margin-bottom: 25px;
+  color: #f4f4f4;
 `;
+
+
+//#FFC44A
+//#5B271F
+//#6A9B14

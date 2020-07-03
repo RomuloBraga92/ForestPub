@@ -1,18 +1,19 @@
 import styled from 'styled-components/native';
 import { Platform } from 'react-native';
 
-export const Container = styled.View`
-  justify-content: center;
-  padding: 0 30px ${Platform.OS === 'android' ? 150 : 40}px;
+export const Container = styled.ImageBackground`
+  flex: 1;
+  padding: 0 20px;
 `;
 
 export const BackButton = styled.TouchableOpacity`
   margin-top: 70px;
+
 `;
 
 export const Title = styled.Text`
-  font-size: 20px;
-  color: #999591;
+  font-size: 40px;
+  color: #f4f4f4;
   font-family: 'Poppins_500Medium';
   margin: 24px auto;
 `;
@@ -23,20 +24,25 @@ export const UserAvatarButton = styled.TouchableOpacity`
 
 export const Level = styled.View`
   position: absolute;
+  padding-left: 10px;
+  padding-right: 10px;
   bottom: 0;
   right: 25%;
   width: 60px;
   height: 40px;
-  background: #bbb;
+  border-color: #5B271F;
+  border-width: 1px;
+  background: #f4f4f4;
   border-radius: 10px;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
+  flex-direction: row;
 `;
 
 export const LevelText = styled.Text`
-  font-size: 16px;
-  font-family: 'Poppins_400Regular';
-  color: black;
+  font-size: 20px;
+  font-family: 'Poppins_500Medium';
+  color: #5B271F;
 `;
 
 export const UserAvatar = styled.Image`
@@ -44,6 +50,5 @@ export const UserAvatar = styled.Image`
   height: 186px;
   border-radius: 93px;
   align-self: center;
-  background: #999591;
 `;
 

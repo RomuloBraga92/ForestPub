@@ -2,10 +2,12 @@ import React, { useCallback, useEffect, useState } from 'react';
 import {useNavigation} from '@react-navigation/native';
 
 import Button from '../../components/Button';
+import background from '../../assets/bg-telas.jpg';
+import logo from '../../assets/logo.png';
 
 import {
 Container,
-Background,
+Logo,
 BackgroundText,
 Content,
 RegisterButton,
@@ -24,13 +26,11 @@ export default function OnBoarding(){
   })
 
   return(
-    <Container>
-      <Background>
-        <BackgroundText>Sua jornada no ForestPub está para começar...</BackgroundText>
-      </Background>
-
+    <Container source={background}>
       <Content>
-        <Button onPress={handleSignInNavigation}>Entrar</Button>
+        <Logo source={logo}/>
+        <BackgroundText>Há tantos bares para se aventurar quanto há mistérios em uma floresta. Seja o maior entre os desbravadores!</BackgroundText>
+        <Button onPress={handleSignInNavigation}>Iniciar</Button>
         <RegisterButton onPress={handleSignUpNavigation}>
           <RegisterText>Registre-se</RegisterText>
         </RegisterButton>

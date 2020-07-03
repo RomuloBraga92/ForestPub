@@ -1,40 +1,40 @@
 import styled from 'styled-components/native';
 
-export const Container = styled.View`
-  flex:1;
+export const Container = styled.ImageBackground`
+  flex: 1;
 `;
 
-export const Background = styled.View`
-  width: 100%;
-  height: 75%;
-  background: #aaa;
-  position: relative;
-  padding: 0 20px;
+export const Content = styled.View`
+  flex: 1;
+  flex-direction: column;
   align-items: center;
+  justify-content: flex-end;
+  width: 100%;
+  padding: 70px 0;
+`;
+
+export const Logo = styled.Image`
+  flex:1;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  margin-top: 270px;
 `;
 
 export const BackgroundText = styled.Text`
   align-items: center;
   justify-content: center;
-  position: absolute;
-  bottom: 15px;
-  font-size: 30px;
+  font-size: 18px;
   color: #f4f4f4;
-  max-width: 400px;
+  max-width: 350px;
   text-align: center;
-`;
-
-export const Content = styled.View`
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  padding: 50px 0;
+  font-family: 'Poppins_400Regular';
+  margin-bottom: 30px;
 `;
 
 export const RegisterButton = styled.TouchableOpacity``;
 
 export const RegisterText = styled.Text`
   font-size: 14px;
-  color: #999591;
+  color: #f4f4f4;
 `;

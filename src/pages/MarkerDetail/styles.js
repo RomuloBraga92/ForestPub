@@ -50,20 +50,20 @@ export const ChecksContainer = styled.View`
 export const ChecksText = styled.Text`
   font-size: 18px;
   font-family: 'Poppins_400Regular';
-  color: #999591;
+  color: #5B271F;
 `;
 
 export const BarName = styled.Text`
   font-size: 30px;
   font-family: 'Poppins_500Medium';
-  color: #999591;
+  color: #5B271F;
   margin-top: 10px;
 `;
 
 export const BarAddress = styled.Text`
   font-size: 20px;
   font-family: 'Poppins_400Regular';
-  color: #999591;
+  color: #5B271F;
   max-width: 350px;
 `;
 
@@ -71,28 +71,28 @@ export const CheckInButton = styled.TouchableOpacity`
   width: 180px;
   height: 60px;
   border-radius: 10px;
-  background: #0000ff;
+  background: #FFC44A;
   margin-top: 25px;
   align-items: center;
   justify-content: center;
-  opacity: ${props => props.disabled ? 0.2 : 1}
+  opacity: ${props => props.disabled ? 0.5 : 1};
 `;
 
 export const CheckInButtonText = styled.Text`
   font-size: 18px;
   font-family: 'Roboto_400Regular';
-  color: #fff;
+  color: #5B271F;
 `;
 
 export const ScanCodeButton = styled.TouchableOpacity`
   width: 70px;
   height: 60px;
   border-radius: 10px;
-  background: #0000ff;
+  background: #FFC44A;
   margin-top: 25px;
   align-items: center;
   justify-content: center;
-  opacity: ${props => props.disabled ? 0.2 : 1}
+  opacity: ${props => props.disabled ? 0.5 : 1};
 `;
 
 
@@ -103,4 +103,12 @@ export const ButtonsContainer = styled.View`
   justify-content: space-between;
 `;
 
+export const ScanCodeIcon = styled.Image`
+  width: 50px;
+  height: 50px;
+`;
 
+
+//#FFC44A
+//#5B271F
+//#6A9B14

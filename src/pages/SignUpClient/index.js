@@ -8,7 +8,9 @@ import api from '../../services/api';
 import getValidationErrors from '../utils/getValidationErrors';
 import Button from '../../components/Button';
 import Input from '../../components/input';
-import {Container, Title} from './styles';
+import background from '../../assets/bg-telas.jpg';
+
+import {OutsideContainer, Container, Title} from './styles';
 
 export default function SignIn(){
   const navigation = useNavigation();
@@ -21,8 +23,6 @@ export default function SignIn(){
   const handleSignUp = useCallback(
     async (data) => {
       try {
-        formRef.current?.setErrors({});
-
         const schema = Yup.object().shape({
           name: Yup.string().required('Nome obrigatório'),
           email: Yup.string()
@@ -44,10 +44,6 @@ export default function SignIn(){
       } catch (err) {
         if (err instanceof Yup.ValidationError) {
           const errors = getValidationErrors(err);
-
-          formRef.current?.setErrors(errors);
-
-          console.log(errors);
           return;
         }
 
@@ -61,6 +57,7 @@ export default function SignIn(){
   );
 
   return(
+    <OutsideContainer source={background}>
     <KeyboardAvoidingView
         style={{ flex: 1}}
         enabled
@@ -103,10 +100,11 @@ export default function SignIn(){
             returnKeyType="send"
             />
 
-            <Button onPress={() => formRef.current.submitForm()} style={{width: 200, marginLeft: 50}}>Cadastrar</Button>
+            <Button onPress={() => formRef.current.submitForm()}>Cadastrar</Button>
           </Form>
         </Container>
       </ScrollView>
     </KeyboardAvoidingView>
+    </OutsideContainer>
   )
 }
