@@ -4,17 +4,24 @@ import {useNavigation} from '@react-navigation/native';
 
 import api from '../../services/api';
 import pubImage from '../../assets/pubImage.jpeg';
-
+import background from '../../assets/bg-telas.jpg';
 
 import {
+  OutsideContainer,
   Container,
   BackButton,
+  PubsContainer,
   BigImageContainer,
+  BarInfoContainer,
   HighlightedContainer,
+  ContentContainer,
   ChecksContainer,
   ChecksText,
   BigPubName,
+  BigPubAddress,
   PubBlockContainer,
+  PubInfoContainer,
+  PubContent,
   PubBlock,
   PubName,
 } from './styles';
@@ -47,31 +54,43 @@ export default function Ranking(){
   },[])
 
   return(
+    <OutsideContainer source={background}>
     <Container>
       <BackButton onPress={handleGoBack}>
-        <Icon name="arrow-left" size={24} color="#5B271F" />
+        <Icon name="arrow-left" size={24} color="#f4f4f4" />
       </BackButton>
 
       <BigImageContainer onPress={()=>handleNavigationMarkerDetail(pubHigh.id)}>
         <HighlightedContainer source={pubImage}/>
-        <ChecksContainer>
-            <Icon name='user' size={20} color='#5B271F'/>
-            <ChecksText>{pubHigh.checkins}</ChecksText>
-        </ChecksContainer>
-        <BigPubName>{pubHigh.name}</BigPubName>
+        <ContentContainer>
+          <BarInfoContainer>
+          <BigPubName>{pubHigh.name}</BigPubName>
+          <BigPubAddress>{`${pubHigh.street}, ${pubHigh.number}, ${pubHigh.district}, ${pubHigh.city} - ${pubHigh.uf}`}</BigPubAddress>
+          </BarInfoContainer>
+          <ChecksContainer>
+              <Icon name='user' size={20} color='#FFC44A'/>
+              <ChecksText>{pubHigh.checkins}</ChecksText>
+          </ChecksContainer>
+        </ContentContainer>
       </BigImageContainer>
 
       {pubData.map(pub => (
-        <PubBlockContainer key={pub.id} onPress={()=>handleNavigationMarkerDetail(pub.id)}>
+        <PubsContainer key={pub.id} onPress={()=>handleNavigationMarkerDetail(pub.id)}>
+        <PubBlockContainer>
           <PubBlock source={pubImage}/>
-          <ChecksContainer style={{bottom: 55, width: 50, height: 30, paddingRight: 20}}>
-            <Icon name='user' size={20} color='#5B271F'/>
+          <PubContent>
+          <PubInfoContainer>
+          <ChecksContainer style={{right: -52, width: 50}}>
+            <Icon name='user' size={20} color='#FFC44A'/>
             <ChecksText>{pub.checkins}</ChecksText>
           </ChecksContainer>
           <PubName>{pub.name}</PubName>
+          </PubInfoContainer>
+          </PubContent>
         </PubBlockContainer>
+        </PubsContainer>
       ))}
-
     </Container>
+    </OutsideContainer>
   );
 }

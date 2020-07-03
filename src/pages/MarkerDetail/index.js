@@ -127,7 +127,7 @@ export default function MarkerDetail(){
     <Container>
       <Header>
         <BackButton onPress={handleBackNavigation}>
-          <Icon name='arrow-left' size={24} color='#5B271F' />
+          <Icon name='arrow-left' size={18} color='#5B271F' />
         </BackButton>
       </Header>
 

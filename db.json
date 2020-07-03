@@ -4,8 +4,8 @@
       "id": 1,
       "name": "Antônio Silva",
       "email": "antoniosilva@gmail.com",
-      "level": 8,
-      "points": 890,
+      "level": 9,
+      "points": 900,
       "isCheck": false
     }
   ],
@@ -40,7 +40,7 @@
       "id": 3,
       "name": "Bar Unidos da Cerveja",
       "email": "atlantica@gmail.com",
-      "checkins": 30,
+      "checkins": 31,
       "latitude": -23.02908,
       "longitude": -43.4975615,
       "street": "Rua Antero Manuel de Sá Filho",
