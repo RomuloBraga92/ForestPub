@@ -86,8 +86,6 @@ module.exports = {
         const pubId = req.body.pubId,
               userId = req.userId;
         const pub = await Pub.findById(pubId);
-        console.log("AAAAAAA")
-        console.log(pub)
         User
             .findById(userId)
             .exec((err, user) => {

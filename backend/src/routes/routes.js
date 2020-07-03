@@ -36,4 +36,7 @@ router.get("/pub", pubController.info);
 //check-in
 router.post("/user/checkin", [authJwt.verifyToken], userController.checkin);
 
+//evaluate
+router.post("/pub/evaluate", pubController.evaluate);
+
 module.exports = router;

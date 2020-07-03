@@ -2,6 +2,8 @@ const config = require("../config/auth.config");
 const Pub = require("../database/models/Pub");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
+const Evaluation = require("../database/models/Evaluation");
+const { findOneAndUpdate } = require("../database/models/Pub");
 
 module.exports = {
     async signup(req, res) {
@@ -81,5 +83,45 @@ module.exports = {
                 }
                 return res.status(200).send(found);
             })
+    },
+
+    async evaluate(req, res) {
+        const pubId = req.body.pubId;
+        const evaluation = req.body.evaluation;
+
+        Evaluation.find({pubId: pubId}).exec((err, eval) => {
+            if(err) {
+                return res.status(500).send({message: err})
+            }
+            if(!eval) {
+                const new_eval = new Evaluation({
+                    pubId: pubId,
+                    total: 1,
+                    evaluations: [evaluation]
+                });
+                await new_eval.save((err, eval) => {
+                    if(err) {
+                        return res.status(500).send({message: err})
+                    }
+                    if(!eval) {
+                        return res.status(500).send({message: "Could not save evaluation!"});
+                    }
+                    return res.status(200).send(eval);
+                })
+            }
+            else {
+                eval.total += 1;
+                eval.evaluations.push(evaluation);
+                await Evaluation.findOneAndUpdate({pubId: pubId}, eval, (err, updated) => {
+                    if(err) {
+                        return res.status(500).send({message: err});
+                    }
+                    if(!updated) {
+                        return res.status(500).send({message: "Could not update evaluation!"});
+                    }
+                    return res.status(200).send(updated);
+                })
+            }
+        });
     }
 }
