@@ -3,6 +3,7 @@ import {FontAwesome as Icon} from '@expo/vector-icons';
 import {useNavigation, useRoute} from '@react-navigation/native';
 import * as Location from 'expo-location';
 import { Alert } from 'react-native';
+import * as MailComposer from 'expo-mail-composer';
 
 import scanCode from '../../assets/icone-sacn.png';
 import api from '../../services/api';
@@ -23,6 +24,8 @@ CheckInButtonText,
 ScanCodeButton,
 ButtonsContainer,
 ScanCodeIcon,
+RatingMail,
+RatingMailText,
 } from './styles';
 
 
@@ -36,6 +39,7 @@ export default function MarkerDetail(){
   var level = user.level;
   var pubChecks = pubData.checkins;
   var isChecked = user.isCheck;
+  const message = `Olá, ${pubData.name}! `
 
   const navigation = useNavigation();
   const route = useRoute();
@@ -123,6 +127,14 @@ export default function MarkerDetail(){
     navigation.navigate('ScanCode');
   },[])
 
+  const handleSendMail = useCallback(()=>{
+    MailComposer.composeAsync({
+      subject: `Mensagem para: ${pubData.name}`,
+      recipients: [pubData.email],
+      body: message,
+    })
+  },[])
+
   return(
     <Container>
       <Header>
@@ -150,6 +162,10 @@ export default function MarkerDetail(){
             <ScanCodeIcon source={scanCode}/>
           </ScanCodeButton>
         </ButtonsContainer>
+
+        <RatingMail onPress={handleSendMail}>
+          <RatingMailText>Entre em contato!</RatingMailText>
+        </RatingMail>
       </Content>
 
 

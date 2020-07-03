@@ -7,7 +7,7 @@ export const Container = styled.View`
 export const Header = styled.View`
   padding-top: ${20 + getStatusBarHeight()}px;
   align-items: flex-start;
-  margin: 30px 20px;
+  margin: 20px 20px;
   flex-direction: row;
 
 `;
@@ -72,7 +72,7 @@ export const CheckInButton = styled.TouchableOpacity`
   height: 60px;
   border-radius: 10px;
   background: #FFC44A;
-  margin-top: 25px;
+  margin-top: 10px;
   align-items: center;
   justify-content: center;
   opacity: ${props => props.disabled ? 0.5 : 1};
@@ -89,7 +89,7 @@ export const ScanCodeButton = styled.TouchableOpacity`
   height: 60px;
   border-radius: 10px;
   background: #FFC44A;
-  margin-top: 25px;
+  margin-top: 10px;
   align-items: center;
   justify-content: center;
   opacity: ${props => props.disabled ? 0.5 : 1};
@@ -106,6 +106,16 @@ export const ButtonsContainer = styled.View`
 export const ScanCodeIcon = styled.Image`
   width: 50px;
   height: 50px;
+`;
+
+export const RatingMail = styled.TouchableOpacity`
+  margin-top: 25px;
+`;
+
+export const RatingMailText = styled.Text`
+  font-size: 18px;
+  font-family: 'Poppins_400Regular';
+  color: #5B271F;
 `;
 
 

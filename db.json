@@ -5,7 +5,7 @@
       "name": "Antônio Silva",
       "email": "antoniosilva@gmail.com",
       "level": 9,
-      "points": 900,
+      "points": 920,
       "isCheck": false
     }
   ],
@@ -26,7 +26,7 @@
     {
       "id": 2,
       "name": "Bar Boteco do Esquenta",
-      "email": "amazonica@gmail.com",
+      "email": "botecoDoEsquenta@gmail.com",
       "checkins": 0,
       "latitude": -23.0280808,
       "longitude": -43.4915615,
@@ -39,8 +39,8 @@
     {
       "id": 3,
       "name": "Bar Unidos da Cerveja",
-      "email": "atlantica@gmail.com",
-      "checkins": 31,
+      "email": "unidosdacerveja@gmail.com",
+      "checkins": 33,
       "latitude": -23.02908,
       "longitude": -43.4975615,
       "street": "Rua Antero Manuel de Sá Filho",
