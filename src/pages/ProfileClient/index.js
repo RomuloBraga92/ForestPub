@@ -8,7 +8,8 @@ import {
 
 import api from '../../services/api';
 import profile from '../../assets/antonio-perfil.jpg';
-import background from '../../assets/bg-telas.jpg'
+import background from '../../assets/bg-telas.jpg';
+import levelProfile from '../../assets/perfil.png';
 
 import {
   Container,
@@ -18,6 +19,7 @@ import {
   LevelText,
   UserAvatar,
   Title,
+  LevelPicture,
 } from './styles';
 
 
@@ -53,7 +55,10 @@ export default function ProfileClient(){
 
             <View>
               <Title>{user.name}</Title>
+              <Title style={{fontSize: 15}}>{user.email}</Title>
             </View>
+
+            <LevelPicture source={levelProfile}/>
           </Container>
   )
 }

@@ -108,8 +108,16 @@ export const ScanCodeIcon = styled.Image`
   height: 50px;
 `;
 
-export const RatingMail = styled.TouchableOpacity`
+export const FooterContainer = styled.View`
+  flex-direction: row;
   margin-top: 25px;
+  justify-content: space-between;
+  align-items: flex-start;
+`;
+
+export const RatingMail = styled.TouchableOpacity`
+  flex-direction: row;
+  justify-content: space-between;
 `;
 
 export const RatingMailText = styled.Text`
@@ -118,6 +126,13 @@ export const RatingMailText = styled.Text`
   color: #5B271F;
 `;
 
+export const RatingText = styled.Text`
+  font-size: 18px;
+  font-family: 'Poppins_400Regular';
+  color: #5B271F;
+`;
+
+export const RatingButton = styled.TouchableOpacity``;
 
 //#FFC44A
 //#5B271F

@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback } from 'react';
 import {useNavigation} from '@react-navigation/native';
 
 import Button from '../../components/Button';
@@ -29,7 +29,7 @@ export default function OnBoarding(){
     <Container source={background}>
       <Content>
         <Logo source={logo}/>
-        <BackgroundText>Há tantos bares para se aventurar quanto há mistérios em uma floresta. Seja o maior entre os desbravadores!</BackgroundText>
+        <BackgroundText>Há tantos bares para se aventurar quanto há mistérios em uma floresta. Desbrave e ganhe prêmios!</BackgroundText>
         <Button onPress={handleSignInNavigation}>Iniciar</Button>
         <RegisterButton onPress={handleSignUpNavigation}>
           <RegisterText>Registre-se</RegisterText>

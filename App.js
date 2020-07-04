@@ -2,7 +2,7 @@ import React from 'react';
 import { StatusBar } from 'react-native';
 import {AppLoading} from 'expo';
 import {Roboto_400Regular, Roboto_500Medium, useFonts} from '@expo-google-fonts/roboto';
-import {Poppins_400Regular, Poppins_500Medium} from '@expo-google-fonts/poppins';
+import {Poppins_400Regular, Poppins_500Medium, Poppins_700Bold} from '@expo-google-fonts/poppins';
 
 import AppRoutes from './src/routes/app.routes';
 
@@ -12,6 +12,7 @@ export default function App() {
     Roboto_500Medium,
     Poppins_400Regular,
     Poppins_500Medium,
+    Poppins_700Bold,
   });
 
   if(!fontsLoaded){

@@ -13,7 +13,7 @@ export const ClientHeader = styled.View`
 
 export const Title = styled.Text`
   font-size: 50px;
-  font-family: 'Poppins_500Medium';
+  font-family: 'Poppins_700Bold';
   color: #5B271F;
 `;
 

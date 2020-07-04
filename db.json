@@ -2,10 +2,10 @@
   "users": [
     {
       "id": 1,
-      "name": "Antônio Silva",
-      "email": "antoniosilva@gmail.com",
+      "name": "Antônio Henrique",
+      "email": "antoniohenrique@gmail.com",
       "level": 9,
-      "points": 920,
+      "points": 900,
       "isCheck": false
     }
   ],
@@ -40,7 +40,7 @@
       "id": 3,
       "name": "Bar Unidos da Cerveja",
       "email": "unidosdacerveja@gmail.com",
-      "checkins": 33,
+      "checkins": 59,
       "latitude": -23.02908,
       "longitude": -43.4975615,
       "street": "Rua Antero Manuel de Sá Filho",

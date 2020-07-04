@@ -24,8 +24,11 @@ CheckInButtonText,
 ScanCodeButton,
 ButtonsContainer,
 ScanCodeIcon,
+FooterContainer,
 RatingMail,
 RatingMailText,
+RatingText,
+RatingButton,
 } from './styles';
 
 
@@ -39,7 +42,7 @@ export default function MarkerDetail(){
   var level = user.level;
   var pubChecks = pubData.checkins;
   var isChecked = user.isCheck;
-  const message = `Olá, ${pubData.name}! `
+  const message = `Olá, ${pubData.name}!`;
 
   const navigation = useNavigation();
   const route = useRoute();
@@ -120,6 +123,9 @@ export default function MarkerDetail(){
       isChecked = true;
       await api.patch('/users/1', {isCheck: isChecked})
 
+      if(level === Math.ceil(points/100)){
+        Alert.alert('Parabéns!', 'Você passou de nível!')
+      };
     }
   },[currentPosition, pubPosition])
 
@@ -134,6 +140,7 @@ export default function MarkerDetail(){
       body: message,
     })
   },[])
+
 
   return(
     <Container>
@@ -163,9 +170,11 @@ export default function MarkerDetail(){
           </ScanCodeButton>
         </ButtonsContainer>
 
+        <FooterContainer>
         <RatingMail onPress={handleSendMail}>
           <RatingMailText>Entre em contato!</RatingMailText>
         </RatingMail>
+        </FooterContainer>
       </Content>
 
 

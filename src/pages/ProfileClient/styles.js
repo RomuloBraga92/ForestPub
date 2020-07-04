@@ -4,6 +4,7 @@ import { Platform } from 'react-native';
 export const Container = styled.ImageBackground`
   flex: 1;
   padding: 0 20px;
+  position: relative;
 `;
 
 export const BackButton = styled.TouchableOpacity`
@@ -15,11 +16,12 @@ export const Title = styled.Text`
   font-size: 40px;
   color: #f4f4f4;
   font-family: 'Poppins_500Medium';
-  margin: 24px auto;
+  margin: 0 auto;
 `;
 
 export const UserAvatarButton = styled.TouchableOpacity`
   position: relative;
+  margin-bottom: 20px;
 `;
 
 export const Level = styled.View`
@@ -52,3 +54,10 @@ export const UserAvatar = styled.Image`
   align-self: center;
 `;
 
+export const LevelPicture = styled.Image`
+  width: 500px;
+  height: 520px;
+  align-self: center;
+  position: absolute;
+  bottom: -60;
+`;

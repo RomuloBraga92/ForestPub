@@ -53,7 +53,7 @@ export const AwardBlock = styled.Image`
   border-radius: 10px;
   margin: 6px 20px;
 
-  opacity: ${props => props.disabled ? 0.4 : 1}
+  opacity: ${props => props.disabled ? 0.5 : 1}
 `;
 
 export const AwardRank = styled.Text`

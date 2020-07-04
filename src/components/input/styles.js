@@ -11,6 +11,7 @@ export const Container = styled.View`
   align-items: center;
   border-width: 2px;
   border-color: #5B271F;
+  color: #312e38;
 `;
 
 export const MyInput = styled.TextInput`

@@ -25,7 +25,7 @@ export default function ChooseBarClientSignUp() {
         <BlocksContainer>
           <BlockContainer onPress={handleSignUpClient}>
             <Block source={clientImage}/>
-            <BlockText>Usuário</BlockText>
+            <BlockText>Cliente</BlockText>
           </BlockContainer>
 
           <BlockContainer onPress={handleSignUpBar}>

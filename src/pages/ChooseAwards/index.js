@@ -3,6 +3,12 @@ import {Feather as Icon} from '@expo/vector-icons';
 import {useNavigation} from "@react-navigation/native";
 
 import levelAwards from '../../assets/icone-premios_1.png';
+import award1 from '../../assets/award1.jpeg';
+import award2 from '../../assets/award2.jpeg';
+import award3 from '../../assets/award3.jpeg';
+import award4 from '../../assets/award4.jpeg';
+import award5 from '../../assets/award5.jpeg';
+
 import {
   Container,
   BackButton,
@@ -173,60 +179,60 @@ export default function ChooseAwards(){
       <Content>
         <AwardRowContainer>
           <AwardBlockContainer disabled={selected1} onPress={() => handleCheckLevel1(level)}>
-            <AwardBlock source={levelAwards} disabled={selected1}/>
+            <AwardBlock source={selected1 ? (award1) : (levelAwards)} disabled={selected1}/>
             <AwardRank>Nivel 1</AwardRank>
           </AwardBlockContainer>
 
           <AwardBlockContainer disabled={selected2} onPress={() => handleCheckLevel2(level)}>
-            <AwardBlock source={levelAwards} disabled={selected2}/>
+            <AwardBlock source={selected2 ? (award2) : (levelAwards)} disabled={selected2}/>
             <AwardRank>Nivel 2</AwardRank>
           </AwardBlockContainer>
         </AwardRowContainer>
 
         <AwardRowContainer>
           <AwardBlockContainer disabled={selected3} onPress={() => handleCheckLevel3(level)}>
-            <AwardBlock source={levelAwards} disabled={selected3}/>
+            <AwardBlock source={selected3 ? (award3) : (levelAwards)} disabled={selected3}/>
             <AwardRank>Nivel 3</AwardRank>
           </AwardBlockContainer>
 
           <AwardBlockContainer disabled={selected4} onPress={() => handleCheckLevel4(level)}>
-            <AwardBlock source={levelAwards} disabled={selected4}/>
+            <AwardBlock source={selected4 ? (award4) : (levelAwards)} disabled={selected4}/>
             <AwardRank>Nivel 4</AwardRank>
           </AwardBlockContainer>
         </AwardRowContainer>
 
         <AwardRowContainer>
           <AwardBlockContainer disabled={selected5} onPress={() => handleCheckLevel5(level)}>
-            <AwardBlock source={levelAwards} disabled={selected5}/>
+            <AwardBlock source={selected5 ? (award5) : (levelAwards)} disabled={selected5}/>
             <AwardRank>Nivel 5</AwardRank>
           </AwardBlockContainer>
 
           <AwardBlockContainer disabled={selected6} onPress={() => handleCheckLevel6(level)}>
-            <AwardBlock source={levelAwards} disabled={selected6}/>
+            <AwardBlock source={selected6 ? (award1) : (levelAwards)} disabled={selected6}/>
             <AwardRank>Nivel 6</AwardRank>
           </AwardBlockContainer>
         </AwardRowContainer>
 
         <AwardRowContainer>
           <AwardBlockContainer disabled={selected7} onPress={() => handleCheckLevel7(level)}>
-            <AwardBlock source={levelAwards} disabled={selected7}/>
+            <AwardBlock source={selected7 ? (award2) : (levelAwards)} disabled={selected7}/>
             <AwardRank>Nivel 7</AwardRank>
           </AwardBlockContainer>
 
           <AwardBlockContainer disabled={selected8} onPress={() => handleCheckLevel8(level)}>
-            <AwardBlock source={levelAwards} disabled={selected8}/>
+            <AwardBlock source={selected8 ? (award3) : (levelAwards)} disabled={selected8}/>
             <AwardRank>Nivel 8</AwardRank>
           </AwardBlockContainer>
         </AwardRowContainer>
 
         <AwardRowContainer>
           <AwardBlockContainer disabled={selected9} onPress={() => handleCheckLevel9(level)}>
-            <AwardBlock source={levelAwards} disabled={selected9}/>
+            <AwardBlock source={selected9 ? (award4) : (levelAwards)} disabled={selected9}/>
             <AwardRank>Nivel 9</AwardRank>
           </AwardBlockContainer>
 
           <AwardBlockContainer disabled={selected10} onPress={() => handleCheckLevel10(level)}>
-            <AwardBlock source={levelAwards} disabled={selected10}/>
+            <AwardBlock source={selected10 ? (award5) : (levelAwards)} disabled={selected10}/>
             <AwardRank>Nivel 10</AwardRank>
           </AwardBlockContainer>
         </AwardRowContainer>

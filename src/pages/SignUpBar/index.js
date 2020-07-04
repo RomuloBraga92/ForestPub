@@ -8,7 +8,7 @@ import Button from '../../components/Button';
 import Input from '../../components/input';
 import background from '../../assets/bg-telas.jpg';
 
-import {OutsideContainer, Container, Title, MiniTitle} from './styles'
+import { OutsideContainer, Container, Title, MiniTitle } from './styles'
 
 export default function SignIn(){
   const formRef = useRef(null);
@@ -44,6 +44,7 @@ export default function SignIn(){
             type="text"
             autoCorrect={false}
             autoCapitalize="none"
+            keyboardType="numeric"
             name="cnpj"
             placeholder="CNPJ - Apenas números"
             />
@@ -54,6 +55,14 @@ export default function SignIn(){
             keyboardType="email-address"
             name="email"
             placeholder="E-mail"
+            />
+            <Input
+            type="number"
+            autoCorrect={false}
+            autoCapitalize="none"
+            keyboardType="numeric"
+            name="capacity"
+            placeholder="Capacidade Máxima"
             />
             <Input
             name="password"

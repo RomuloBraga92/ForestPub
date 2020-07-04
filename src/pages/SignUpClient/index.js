@@ -1,8 +1,9 @@
-import React, { useCallback, useRef } from 'react';
+import React, { useCallback, useRef, useState } from 'react';
 import { Form } from '@unform/mobile';
-import { KeyboardAvoidingView, ScrollView, Alert } from 'react-native';
+import { KeyboardAvoidingView, ScrollView, Alert, StyleSheet } from 'react-native';
 import {useNavigation} from '@react-navigation/native'
 import * as Yup from 'yup';
+import RNPickerSelect from 'react-native-picker-select';
 
 import api from '../../services/api';
 import getValidationErrors from '../utils/getValidationErrors';
@@ -16,9 +17,6 @@ export default function SignIn(){
   const navigation = useNavigation();
   const formRef = useRef(null);
 
-  const handleDashboardNavigation = useCallback(()=>{
-    navigation.navigate('DashboardClient')
-  },[])
 
   const handleSignUp = useCallback(
     async (data) => {
@@ -85,10 +83,22 @@ export default function SignIn(){
             name="email"
             placeholder="E-mail"
             />
+            <RNPickerSelect
+              placeholder={{}}
+              onValueChange={(value) => console.log(value)}
+              items={[
+                  { label: 'Gênero', value: 'genero' },
+                  { label: 'Masculino', value: 'masculino' },
+                  { label: 'Feminino', value: 'feminino' },
+                  { label: 'Outro', value: 'outro' },
+              ]}
+              style={pickerSelectStyles}
+            />
             <Input
             type="text"
             autoCorrect={false}
             autoCapitalize="none"
+            keyboardType="numeric"
             name="cpf"
             placeholder="CPF - Apenas números"
             />
@@ -108,3 +118,32 @@ export default function SignIn(){
     </OutsideContainer>
   )
 }
+
+const pickerSelectStyles = StyleSheet.create({
+  inputIOS: {
+    fontSize: 15,
+    paddingVertical: 12,
+    paddingHorizontal: 16,
+    borderWidth: 2,
+    borderColor: '#5B271F',
+    borderRadius: 20,
+    paddingRight: 30,
+    marginBottom: 15,
+    backgroundColor: '#f4f4f4',
+    fontFamily: 'Poppins_400Regular',
+    color: '#312e38',
+  },
+  inputAndroid: {
+    fontSize: 15,
+    paddingHorizontal: 16,
+    paddingVertical: 8,
+    borderWidth: 2,
+    borderColor: '#5B271F',
+    borderRadius: 20,
+    paddingRight: 30,
+    marginBottom: 15,
+    backgroundColor: '#f4f4f4',
+    fontFamily: 'Poppins_400Regular',
+    color: '#312e38',
+  },
+});
