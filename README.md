@@ -56,15 +56,12 @@ O projeto foi desenvolvido utilizando as seguintes tecnologias
 
     # Instalar as dependências
     $ yarn
-
-    # Entrar na pasta do servidor
-    $ cd backend
     
-    # Iniciar servidor
-    $ node ./src/server.js
+    # Iniciar servidor fake
+    $ json-server db.json -p 3000 -H digiteaquiseuip
     
-    # Voltar para pasta principal
-    $ cd ../
+    # Alterar baseURL
+    ir na pasta src/services/api e trocar o ip para seu ip e salvar
     
     # Iniciar aplicação
     $ npm start
